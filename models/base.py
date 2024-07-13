@@ -1,6 +1,6 @@
 """All Base Models"""
 from datetime import datetime
-import db
+from . import db
 
 
 class Base(db.Model):
