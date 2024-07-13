@@ -9,5 +9,5 @@ class Nurse(DoctorNurseBase):
 
     __tablename__ = "nurses"
 
-    max_capacity = db.Column(db.Integer, nullable=False, default=1)
+    max_capacity = db.Column(db.Integer, nullable=False)
     patients = db.relationship('Patient', secondary=nurse_patient, backref='nurses')

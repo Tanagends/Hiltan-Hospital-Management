@@ -1,6 +1,7 @@
 """All Base Models"""
 from datetime import datetime
 from . import db
+from uuid import uuid4
 
 
 class Base(db.Model):
@@ -8,7 +9,7 @@ class Base(db.Model):
 
     __abstract__ = True
 
-    id = db.Column(db.String(200), primary_key=True)
+    id = db.Column(db.String(50), primary_key=True, default=str(uuid4()))
     date_created = db.Column(db.DateTime, server_default=db.func.now())
     date_modified = db.Column(db.DateTime, onupdate=db.func.now())
 
@@ -18,13 +19,13 @@ class BasePerson(Base):
 
     __abstract__ = True
 
-    name = db.Column(db.String(256), nullable=False)
-    surname = db.Column(db.String(256), nullable=False)
-    email = db.Column(db.String(250), nullable=False)
+    name = db.Column(db.String(20), nullable=False)
+    surname = db.Column(db.String(20), nullable=False)
+    email = db.Column(db.String(20), nullable=False)
     dob = db.Column(db.Date, nullable=False)
     gender = db.Column(db.String(10))
     phone = db.Column(db.String(50))
-    profile_pic = db.Column(db.String(100))
+    profile_pic = db.Column(db.String(50))
 
 
 class DoctorNurseBase(BasePerson):

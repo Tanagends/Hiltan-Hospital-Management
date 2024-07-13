@@ -9,5 +9,5 @@ class Patient(BasePerson):
 
     __tablename__ = 'patients'
 
-    state = db.Column(db.String(250))
+    state = db.Column(db.String(50))
     diagnosis = db.relationship('Diagnosis', backref='patient')
