@@ -9,8 +9,8 @@ class Prescription(Base):
 
     medicine = db.Column(db.String(50))
     disease = db.Column(db.String(50))
-    instruction = db.Column(db.Text(3000))
+    instruction = db.Column(db.Text)
     start_date = db.Column(db.Date)
     finish_date = db.Column(db.Date)
-    dosage = db.Column(db.String(db.String(50)))
+    dosage = db.Column(db.String(50))
     diagnosis_id = db.Column(db.String(50), db.ForeignKey('diagnosis.id'))

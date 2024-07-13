@@ -19,6 +19,5 @@ def index():
 if __name__ == "__main__":
     with app.app_context():
         from models import Patient, Doctor, Nurse, Prescription, Diagnosis
-        db.drop_all()
         db.create_all()
     app.run(debug=True)
