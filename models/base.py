@@ -2,9 +2,10 @@
 from datetime import datetime
 from . import db
 from uuid import uuid4
+from flask_login import UserMixin
 
 
-class Base(db.Model):
+class Base(UserMixin, db.Model):
     """Base for all classes"""
 
     __abstract__ = True
