@@ -14,8 +14,8 @@ def signup():
     form = BaseForm()
     if form.validate_on_submit():
         print(form.data)
-        return render_template('signup.html')
-    return redirect('login.html')
+        return redirect(url_for('login'))
+    return redirect(url_for('signup'))
 
 
 @auth.login('/login', strict_slashes=False, methods=["GET", "POST"])
