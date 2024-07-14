@@ -12,8 +12,9 @@
         <form action="/login" method="post">
             <fieldset class="border p-4 rounded-lg shadow-lg">
                 <legend class="text-lg font-semibold text-darkGreen mb-4">Hiltan Login</legend>
-                {{ form.csrf }}
+                
                 <div class="mb-4">
+		    {{ form.csrf_token }}
                     {{ form.email.label(class="block mb-2 text-sm") }} 
                     {{ form.email(class="border rounded p-2 w-full") }} 
                     <ul>

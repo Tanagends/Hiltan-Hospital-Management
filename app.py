@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """The Hiltan Hospital Management Application"""
-from flask import Flask
+from flask import Flask, render_template
 from flask_migrate import Migrate
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
@@ -37,7 +37,7 @@ app.register_blueprint(auth)
 @app.route('/', strict_slashes=False)
 def index():
     """Landing page"""
-    return "Welcome to Hiltan Hospital"
+    return render_template('layout.html')
 
 if __name__ == "__main__":
     with app.app_context():

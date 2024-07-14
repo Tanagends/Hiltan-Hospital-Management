@@ -1,5 +1,5 @@
 """User authentication module with sign in and sign up"""
-from flask import Blueprint, request, render_template, redirect, url_for
+from flask import Blueprint, request, render_template, redirect, url_for, flash
 from forms import BaseForm, LoginForm
 from flask_login import login_user, logout_user, login_required
 from models import Patient, Nurse, Doctor, db
@@ -36,7 +36,8 @@ def signup():
         users = {'doctor': Doctor, 'nurse': Nurse, 'patient': Patient}
         excl = ['csrf_token', 'role', 'confirm_password', 'password',
                 'profile_pic', 'submit']
-        data = {k:v for k, v in form.data.items() if k not in excl}
+        data = {k: v.strip() if isinstance(v, str) else v for k, v 
+                in form.data.items() if k not in excl}
 
         from app import bcrypt
         data['password'] = bcrypt.generate_password_hash(form.password.data)
@@ -61,16 +62,16 @@ def login():
         users = [Patient, Doctor, Nurse]
         print('yes')
         for User in users:
-            user = User.query.filter_by(email=form.email.data)
+            user = User.query.filter_by(email=form.email.data).all()
             from app import bcrypt
-            if user and bcrypt.check_hash_password(user.password, pwd):
-                login_user(user)
+            if user and bcrypt.check_password_hash(user[0].password, pwd.strip()):
+                login_user(user[0])
                 return "logged in"
         flash("Invalid login credentials", "danger")
     else:
         print('no')
         print(form.errors)
-        return render_template("log.html", form=form)
+    return render_template("log.html", form=form)
 
 
 @auth.route('/logout', strict_slashes=False)
