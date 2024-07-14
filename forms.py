@@ -71,15 +71,22 @@ class DoctorNurseForm(BaseForm):
             return (today.year - self.career_start)
         return None
 
+
 class DoctorForm(DoctorNurseForm):
     """Doctors Sign up form"""
     specialty = StringField('Specialty')
+
 
 class NurseForm(DoctorNurseForm)
     """Nurse Signup Form"""
     max_capacity = BooleanField('Are you already assigned maximum patients')
 
+
 class PatientForm(BaseForm):
     """Patients form"""
 
 
+class LoginForm(FlaskForm):
+    """Login form"""
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    password = PasswordField('Password', validators=[DataRequired())

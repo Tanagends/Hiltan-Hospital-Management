@@ -27,6 +27,8 @@ def load_user(user_id):
         if user:
             return user
     return None
+from auth import auth
+app.register_blueprint(auth)
 
 @app.route('/', strict_slashes=False)
 def index():

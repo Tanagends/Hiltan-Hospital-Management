@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <h1>Welcome to login for Hiltan Hospital</h1>
+    <form action="/login">
+        {{ form.csrf }}
+
+        <fieldset>
+            <legend>Hiltan login</legend>
+            {{ form.email.label }} {{ form.email }}
+            <ul>
+                {% for error in form.email.errors %}
+                <li class="errors">{{ error }}</li>
+                {% endfor %}
+            </ul>
+
+            {{ form.password.label }} {{ form.password }}
+            <ul>
+                {% for error in form.password.errors %}
+                <li class="errors">{{ error }}</li>
+                {% endfor %}
+            </ul>
+
+            {{ form.submit() }}
+
+        </fieldset>
+
+    </form>
+</body>
+</html>

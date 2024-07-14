@@ -1,1 +1,97 @@
-ii
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+</head>
+<body>
+    <h1>Welcome to Signup for Hiltan Hospital</h1>
+    <fieldset>
+        <form action="/signup" enctype="multipart/form-data">
+            {{ form.csrf }}
+            <legend>Personal Information</legend>
+            {{ form.role.label }} {{ form.role() }} <br>
+            <ul>
+                {% for error in form.role.errors %}
+                <li class="errors">{{ error }}</li>
+                {% endfor %}
+            </ul>
+            {{ form.name.label }} {{ form.name(size=32) }} <br>
+            <ul>
+                {% for error in form.name.errors %}
+                <li class="errors">{{ error }}</li>
+                {% endfor %}
+            </ul>            
+            {{ form.surname.label }} {{ form.surname(size=32) }} <br>
+            <ul>
+                {% for error in form.surname.errors %}
+                <li class="errors">{{ error }}</li>
+                {% endfor %}
+            </ul>
+
+            {{ form.gender.label }} {{ form.gender() }} <br>
+            <ul>
+                {% for error in form.gender.errors %}
+                <li class="errors">{{ error }}</li>
+                {% endfor %}
+            </ul>
+
+            {{ form.dob.label }} {{ form.dob(size=32) }} <br>
+            <ul>
+                {% for error in form.dob.errors %}
+                <li class="errors">{{ error }}</li>
+                {% endfor %}
+            </ul>
+
+
+            <legend>Contact Information and Address</legend>
+            {{ form.email.label }} {{ form.email(size=32) }} <br>
+            <ul>
+                {% for error in form.email.errors %}
+                <li class="errors">{{ error }}</li>
+                {% endfor %}
+            </ul>
+
+            {{ form.phone.label }} {{ form.phone(size=32) }} <br>
+            <ul>
+                {% for error in form.phone.errors %}
+                <li class="errors">{{ error }}</li>
+                {% endfor %}
+            </ul>
+
+            {{ form.address.label }} {{ form.address(size=32) }} <br>
+            <ul>
+                {% for error in form.address.errors %}
+                <li class="errors">{{ error }}</li>
+                {% endfor %}
+            </ul>
+
+
+            <legend>Password and Profile Picture</legend>
+            {{ form.password.label }} {{ form.password(size=32) }} <br>
+            <ul>
+                {% for error in form.password.errors %}
+                <li class="errors">{{ error }}</li>
+                {% endfor %}
+            </ul>
+
+            {{ form.confirm_password.label }} {{ form.confirm_password(size=32) }} <br>
+            <ul>
+                {% for error in form.confirm_password.errors %}
+                <li class="errors">{{ error }}</li>
+                {% endfor %}
+            </ul>
+
+            {{ form.profile_pic.label }} {{ form.profile_pic() }} <br>
+            <ul>
+                {% for error in form.profile_pic.errors %}
+                <li class="errors">{{ error }}</li>
+                {% endfor %}
+            </ul>
+    
+            {{ form.submit() }}
+        </form>
+    </fieldset>
+</body>
+</html>
