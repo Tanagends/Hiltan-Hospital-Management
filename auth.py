@@ -38,7 +38,7 @@ def login():
         flash("Invalid login credentials", "danger")
     return redirect(url_for("auth.login"))
 
-@auth.logout(/'logout', strict_slashes=False)
+@auth.logout('/logout', strict_slashes=False)
 @login_required
 def logout():
     """logs out user"""

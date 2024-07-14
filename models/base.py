@@ -27,6 +27,7 @@ class BasePerson(Base):
     gender = db.Column(db.String(10))
     phone = db.Column(db.String(50))
     profile_pic = db.Column(db.String(50))
+    address = db.Column(db.String(200))
 
 
 class DoctorNurseBase(BasePerson):
