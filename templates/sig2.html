@@ -11,13 +11,13 @@
         <h1 class="text-center text-3xl text-darkBlue mb-6">Welcome to Signup for Hiltan Hospital</h1>
         
         <form action="/signup" enctype="multipart/form-data" method="post">
-            {{ form.csrf }}
 
             <!-- Personal Information Fieldset -->
             <fieldset class="border p-4 rounded-lg shadow-lg mb-6">
                 <legend class="text-lg font-semibold text-darkGreen">Personal Information</legend>
                 
                 <div class="mb-4">
+		    {{ form.csrf_token }}
                     {{ form.role.label(class="block mb-2 text-sm") }} 
                     {{ form.role(class="border rounded p-2 w-full") }} 
                     <ul>

@@ -11,7 +11,7 @@
         <h1 class="text-center text-3xl text-darkBlue mb-6">Welcome to Signup for Hiltan Hospital</h1>
         <fieldset class="border p-4 rounded-lg shadow-lg">
             <form action="/signup" enctype="multipart/form-data" method="post">
-                {{ form.csrf }}
+                {{ form.csrf() }}
                 <legend class="text-lg font-semibold text-darkGreen mb-4">Personal Information</legend>
                 
                 <div class="mb-4">

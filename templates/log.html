@@ -10,10 +10,9 @@
     <div class="container mx-auto p-6">
         <h1 class="text-center text-3xl text-darkBlue mb-6">Welcome to Login for Hiltan Hospital</h1>
         <form action="/login" method="post">
-            {{ form.csrf }}
             <fieldset class="border p-4 rounded-lg shadow-lg">
                 <legend class="text-lg font-semibold text-darkGreen mb-4">Hiltan Login</legend>
-                
+                {{ form.csrf }}
                 <div class="mb-4">
                     {{ form.email.label(class="block mb-2 text-sm") }} 
                     {{ form.email(class="border rounded p-2 w-full") }} 

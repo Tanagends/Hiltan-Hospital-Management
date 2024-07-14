@@ -22,11 +22,12 @@ class BasePerson(Base):
 
     name = db.Column(db.String(20), nullable=False)
     surname = db.Column(db.String(20), nullable=False)
-    email = db.Column(db.String(20), nullable=False)
+    email = db.Column(db.String(100), nullable=False)
     dob = db.Column(db.Date, nullable=False)
     gender = db.Column(db.String(10))
     phone = db.Column(db.String(50))
-    profile_pic = db.Column(db.String(50))
+    profile_pic = db.Column(db.String(100))
+    password = db.Column(db.String(200))
     address = db.Column(db.String(200))
 
 

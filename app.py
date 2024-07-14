@@ -4,11 +4,14 @@ from flask import Flask
 from flask_migrate import Migrate
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
+from flask_wtf.csrf import CSRFProtect
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://hiltan_admin:hiltan_pwd@localhost/hiltan'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SECRET_KEY'] = 'secret_key'
+app.config['SECRET_KEY'] = 'tanatswa'
+#csrf = CSRFProtect(app)
+
 
 from models import db
 db.init_app(app)
