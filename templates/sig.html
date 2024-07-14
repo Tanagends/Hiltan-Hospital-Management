@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ url_for('static', filename='css/output.css') }}" rel="stylesheet">
+    <title>Signup</title>
+</head>
+<body class="bg-lightGray text-darkGray">
+    <div class="container mx-auto p-6">
+        <h1 class="text-center text-3xl text-darkBlue mb-6">Welcome to Signup for Hiltan Hospital</h1>
+        <fieldset class="border p-4 rounded-lg shadow-lg">
+            <form action="/signup" enctype="multipart/form-data" method="post">
+                {{ form.csrf }}
+                <legend class="text-lg font-semibold text-darkGreen mb-4">Personal Information</legend>
+                
+                <div class="mb-4">
+                    {{ form.role.label(class="block mb-2 text-sm") }} 
+                    {{ form.role(class="border rounded p-2 w-full") }} 
+                    <ul>
+                        {% for error in form.role.errors %}
+                        <li class="text-red-600 text-sm">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="mb-4">
+                    {{ form.name.label(class="block mb-2 text-sm") }} 
+                    {{ form.name(size=32, class="border rounded p-2 w-full") }} 
+                    <ul>
+                        {% for error in form.name.errors %}
+                        <li class="text-red-600 text-sm">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="mb-4">
+                    {{ form.surname.label(class="block mb-2 text-sm") }} 
+                    {{ form.surname(size=32, class="border rounded p-2 w-full") }} 
+                    <ul>
+                        {% for error in form.surname.errors %}
+                        <li class="text-red-600 text-sm">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="mb-4">
+                    {{ form.gender.label(class="block mb-2 text-sm") }} 
+                    {{ form.gender(class="border rounded p-2 w-full") }} 
+                    <ul>
+                        {% for error in form.gender.errors %}
+                        <li class="text-red-600 text-sm">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="mb-4">
+                    {{ form.dob.label(class="block mb-2 text-sm") }} 
+                    {{ form.dob(size=32, class="border rounded p-2 w-full") }} 
+                    <ul>
+                        {% for error in form.dob.errors %}
+                        <li class="text-red-600 text-sm">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <legend class="text-lg font-semibold text-darkGreen mb-4">Contact Information and Address</legend>
+
+                <div class="mb-4">
+                    {{ form.email.label(class="block mb-2 text-sm") }} 
+                    {{ form.email(size=32, class="border rounded p-2 w-full") }} 
+                    <ul>
+                        {% for error in form.email.errors %}
+                        <li class="text-red-600 text-sm">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="mb-4">
+                    {{ form.phone.label(class="block mb-2 text-sm") }} 
+                    {{ form.phone(size=32, class="border rounded p-2 w-full") }} 
+                    <ul>
+                        {% for error in form.phone.errors %}
+                        <li class="text-red-600 text-sm">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="mb-4">
+                    {{ form.address.label(class="block mb-2 text-sm") }} 
+                    {{ form.address(size=32, class="border rounded p-2 w-full") }} 
+                    <ul>
+                        {% for error in form.address.errors %}
+                        <li class="text-red-600 text-sm">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <legend class="text-lg font-semibold text-darkGreen mb-4">Password and Profile Picture</legend>
+
+                <div class="mb-4">
+                    {{ form.password.label(class="block mb-2 text-sm") }} 
+                    {{ form.password(size=32, class="border rounded p-2 w-full") }} 
+                    <ul>
+                        {% for error in form.password.errors %}
+                        <li class="text-red-600 text-sm">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="mb-4">
+                    {{ form.confirm_password.label(class="block mb-2 text-sm") }} 
+                    {{ form.confirm_password(size=32, class="border rounded p-2 w-full") }} 
+                    <ul>
+                        {% for error in form.confirm_password.errors %}
+                        <li class="text-red-600 text-sm">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="mb-4">
+                    {{ form.profile_pic.label(class="block mb-2 text-sm") }} 
+                    {{ form.profile_pic(class="border rounded p-2 w-full") }} 
+                    <ul>
+                        {% for error in form.profile_pic.errors %}
+                        <li class="text-red-600 text-sm">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="mb-6">
+                    {{ form.submit(class="bg-darkBlue text-white rounded p-2 w-full hover:bg-darkGreen transition duration-200") }}
+                </div>
+            </form>
+        </fieldset>
+    </div>
+</body>
+</html>
+
