@@ -8,7 +8,7 @@
 <body>
     <h1>Welcome to Signup for Hiltan Hospital</h1>
     <fieldset>
-        <form action="/signup" enctype="multipart/form-data">
+        <form action="/signup" enctype="multipart/form-data" method="post">
             {{ form.csrf }}
             <legend>Personal Information</legend>
             {{ form.role.label }} {{ form.role() }} <br>

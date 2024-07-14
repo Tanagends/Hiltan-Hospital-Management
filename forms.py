@@ -49,7 +49,7 @@ class BaseForm(FlaskForm):
         users = [Patient, Doctor, Nurse]
 
         for User in users:
-            user = User.query.filter_by(email=email.data)
+            user = User.query.filter_by(email=email.data).all()
             if user:
                 raise ValidationError("Email already in use. Please login")
 

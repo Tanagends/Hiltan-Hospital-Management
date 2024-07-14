@@ -8,6 +8,7 @@ from flask_login import LoginManager
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://hiltan_admin:hiltan_pwd@localhost/hiltan'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SECRET_KEY'] = 'secret_key'
 
 from models import db
 db.init_app(app)
