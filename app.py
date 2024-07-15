@@ -37,7 +37,7 @@ app.register_blueprint(auth)
 @app.route('/', strict_slashes=False)
 def index():
     """Landing page"""
-    return render_template('layout.html')
+    return render_template('landing.html')
 
 if __name__ == "__main__":
     with app.app_context():
