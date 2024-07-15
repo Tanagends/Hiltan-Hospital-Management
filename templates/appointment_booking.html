@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+Appointment Booking - Hiltan Hospital
+{% endblock %}
+
+{% block navlinks %}
+<a href="#" class="text-white hover:underline">Home</a>
+<a href="#book" class="text-white hover:underline">Book Appointment</a>
+<a href="#appointments" class="text-white hover:underline">My Appointments</a>
+{% endblock %}
+
+{% block main %}
+<section id="book" class="my-12">
+    <h2 class="text-3xl font-bold text-darkBlue mb-4">Book an Appointment</h2>
+    <form action="{{ url_for('book_appointment') }}" method="post" class="bg-white p-6 rounded shadow-md">
+        <label for="doctor" class="block mb-2">Choose Doctor:</label>
+        <select id="doctor" name="doctor" class="w-full p-2 border border-lightGray rounded mb-4">
+            <option value="doctor1">Dr. John Doe</option>
+            <option value="doctor2">Dr. Jane Smith</option>
+        </select>
+        <label for="date" class="block mb-2">Choose Date:</label>
+        <input type="date" id="date" name="date" class="w-full p-2 border border-lightGray rounded mb-4">
+        <label for="time" class="block mb-2">Choose Time:</label>
+        <input type="time" id="time" name="time" class="w-full p-2 border border-lightGray rounded mb-4">
+        <button type="submit" class="bg-darkBlue text-white py-2 px-4 rounded mt-4">Book Appointment</button>
+    </form>
+</section>
+
+<section id="appointments" class="my-12">
+    <h2 class="text-3xl font-bold text-darkBlue mb-4">My Appointments</h2>
+    <ul class="list-disc pl-5">
+        <li>Appointment with Dr. John Doe on 2024-07-20 at 10:00 AM</li>
+        <li>Appointment with Dr. Jane Smith on 2024-07-22 at 2:00 PM</li>
+    </ul>
+</section>
+{% endblock %}
+

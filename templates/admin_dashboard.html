@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+Admin Dashboard - Hiltan Hospital
+{% endblock %}
+
+{% block navlinks %}
+<a href="#" class="text-white hover:underline">Home</a>
+<a href="#manage-users" class="text-white hover:underline">Manage Users</a>
+<a href="#analytics" class="text-white hover:underline">Analytics</a>
+{% endblock %}
+
+{% block main %}
+<section id="manage-users" class="my-12">
+    <h2 class="text-3xl font-bold text-darkBlue mb-4">Manage Users</h2>
+    <ul class="list-disc pl-5">
+        <li>User 1 - Details</li>
+        <li>User 2 - Details</li>
+        <li>User 3 - Details</li>
+    </ul>
+</section>
+
+<section id="analytics" class="my-12">
+    <h2 class="text-3xl font-bold text-darkBlue mb-4">Analytics</h2>
+    <p>Analytics interface is under construction.</p>
+</section>
+{% endblock %}
+

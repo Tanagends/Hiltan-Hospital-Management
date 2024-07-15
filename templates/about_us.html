@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+About Us - Hiltan Hospital
+{% endblock %}
+
+{% block navlinks %}
+<a href="#" class="text-white hover:underline">Home</a>
+<a href="#about" class="text-white hover:underline">About Us</a>
+<a href="#team" class="text-white hover:underline">Our Team</a>
+{% endblock %}
+
+{% block main %}
+<section id="about" class="my-12">
+    <h2 class="text-3xl font-bold text-darkBlue mb-4">About Hiltan Hospital</h2>
+    <p>Hiltan Hospital is dedicated to providing the best healthcare services to our community...</p>
+</section>
+
+<section id="team" class="my-12">
+    <h2 class="text-3xl font-bold text-darkBlue mb-4">Our Team</h2>
+    <div class="flex flex-wrap">
+        <div class="w-full md:w-1/3 p-4">
+            <div class="text-center">
+                <img src="{{ url_for('static', filename='images/doctor.jpg') }}" alt="Team Member" class="w-24 h-24 rounded-full mx-auto">
+                <h3 class="text-xl font-semibold">Dr. John Doe</h3>
+                <p>Chief Medical Officer</p>
+            </div>
+        </div>
+        <div class="w-full md:w-1/3 p-4">
+            <div class="text-center">
+                <img src="{{ url_for('static', filename='images/nurse.jpg') }}" alt="Team Member" class="w-24 h-24 rounded-full mx-auto">
+                <h3 class="text-xl font-semibold">Nurse Jane Smith</h3>
+                <p>Head Nurse</p>
+            </div>
+        </div>
+        <div class="w-full md:w-1/3 p-4">
+            <div class="text-center">
+                <img src="{{ url_for('static', filename='images/owner.jpg') }}" alt="Team Member" class="w-24 h-24 rounded-full mx-auto">
+                <h3 class="text-xl font-semibold">[Your Name]</h3>
+                <p>Founder & Developer</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
