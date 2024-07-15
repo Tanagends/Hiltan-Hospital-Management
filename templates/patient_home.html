@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+Patient Home - Hiltan Hospital
+{% endblock %}
+
+{% block navlinks %}
+<a href="#" class="text-white hover:underline">Home</a>
+<a href="#prescriptions" class="text-white hover:underline">Prescriptions</a>
+<a href="#doctors" class="text-white hover:underline">Doctors</a>
+<a href="#diagnosis" class="text-white hover:underline">Diagnosis</a>
+<a href="#ai-selfdiagnosis" class="text-white hover:underline">AI Self-Diagnosis</a>
+<a href="#healthy-habits" class="text-white hover:underline">Healthy Habits</a>
+{% endblock %}
+
+{% block main %}
+<section id="profile" class="my-12 text-center">
+    <img src="{{ url_for('static', filename='images/patient.jpg') }}" alt="Patient Profile Picture" class="w-32 h-32 rounded-full mx-auto">
+    <h2 class="text-3xl font-bold text-darkBlue mt-4">Welcome, [Patient Name]</h2>
+    <p class="text-lg mt-2">Here's a summary of your current health information and services.</p>
+</section>
+
+<section id="prescriptions" class="my-12">
+    <h2 class="text-3xl font-bold text-darkBlue mb-4">Current Prescriptions</h2>
+    <ul class="list-disc pl-5">
+        <li>Prescription 1 - Details</li>
+        <li>Prescription 2 - Details</li>
+        <li>Prescription 3 - Details</li>
+    </ul>
+</section>
+
+<section id="doctors" class="my-12">
+    <h2 class="text-3xl font-bold text-darkBlue mb-4">Assigned Doctors</h2>
+    <div class="flex flex-wrap">
+        <div class="w-full md:w-1/2 p-4">
+            <div class="flex items-center">
+                <img src="{{ url_for('static', filename='images/doctor1.jpg') }}" alt="Doctor Profile Picture" class="w-16 h-16 rounded-full mr-4">
+                <div>
+                    <h3 class="text-2xl font-semibold">Dr. Jane Smith</h3>
+                    <p>Specialty: Cardiology</p>
+                </div>
+            </div>
+        </div>
+        <div class="w-full md:w-1/2 p-4">
+            <div class="flex items-center">
+                <img src="{{ url_for('static', filename='images/doctor2.jpg') }}" alt="Doctor Profile Picture" class="w-16 h-16 rounded-full mr-4">
+                <div>
+                    <h3 class="text-2xl font-semibold">Dr. John Doe</h3>
+                    <p>Specialty: Neurology</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="diagnosis" class="my-12">
+    <h2 class="text-3xl font-bold text-darkBlue mb-4">Diagnosis History</h2>
+    <ul class="list-disc pl-5">
+        <li>Diagnosis 1 - Details</li>
+        <li>Diagnosis 2 - Details</li>
+        <li>Diagnosis 3 - Details</li>
+    </ul>
+</section>
+
+<section id="ai-selfdiagnosis" class="my-12">
+    <h2 class="text-3xl font-bold text-darkBlue mb-4">AI Self-Diagnosis</h2>
+    <p>Use our AI system to get a preliminary diagnosis based on your symptoms.</p>
+    <button class="bg-darkGreen text-white py-2 px-4 rounded mt-4">Start Self-Diagnosis</button>
+</section>
+
+<section id="healthy-habits" class="my-12">
+    <h2 class="text-3xl font-bold text-darkBlue mb-4">Healthy Habits</h2>
+    <p>Explore healthy habits to improve your wellbeing:</p>
+    <ul class="list-disc pl-5">
+        <li>Habit 1 - Description</li>
+        <li>Habit 2 - Description</li>
+        <li>Habit 3 - Description</li>
+    </ul>
+</section>
+{% endblock %}
+
