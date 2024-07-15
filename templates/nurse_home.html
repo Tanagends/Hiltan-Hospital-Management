@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+Nurse Home - Hiltan Hospital
+{% endblock %}
+
+{% block navlinks %}
+<a href="#" class="text-white hover:underline">Home</a>
+<a href="#profile" class="text-white hover:underline">Profile</a>
+<a href="#patients" class="text-white hover:underline">Patients</a>
+<a href="#tasks" class="text-white hover:underline">Tasks</a>
+<a href="#activity" class="text-white hover:underline">Recent Activity</a>
+<a href="#ai-assistance" class="text-white hover:underline">AI Assistance</a>
+<a href="#schedule" class="text-white hover:underline">Update Schedule</a>
+{% endblock %}
+
+{% block main %}
+<section id="profile" class="my-12 text-center">
+    <img src="{{ url_for('static', filename='images/nurse.jpg') }}" alt="Nurse Profile Picture" class="w-32 h-32 rounded-full mx-auto">
+    <h2 class="text-3xl font-bold text-darkBlue mt-4">Welcome, Nurse [Nurse Name]</h2>
+    <p class="text-lg mt-2">Here's a summary of your current assignments and tasks.</p>
+</section>
+
+<section id="patients" class="my-12">
+    <h2 class="text-3xl font-bold text-darkBlue mb-4">Assigned Patients</h2>
+    <div class="flex flex-wrap">
+        <div class="w-full md:w-1/2 p-4">
+            <div class="flex items-center">
+                <img src="{{ url_for('static', filename='images/patient1.jpg') }}" alt="Patient Profile Picture" class="w-16 h-16 rounded-full mr-4">
+                <div>
+                    <h3 class="text-2xl font-semibold">Patient 1</h3>
+                    <p>Condition: Hypertension</p>
+                </div>
+            </div>
+        </div>
+        <div class="w-full md:w-1/2 p-4">
+            <div class="flex items-center">
+                <img src="{{ url_for('static', filename='images/patient2.jpg') }}" alt="Patient Profile Picture" class="w-16 h-16 rounded-full mr-4">
+                <div>
+                    <h3 class="text-2xl font-semibold">Patient 2</h3>
+                    <p>Condition: Diabetes</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="tasks" class="my-12">
+    <h2 class="text-3xl font-bold text-darkBlue mb-4">Tasks</h2>
+    <ul class="list-disc pl-5">
+        <li>Task 1 - Details</li>
+        <li>Task 2 - Details</li>
+        <li>Task 3 - Details</li>
+    </ul>
+</section>
+
+<section id="activity" class="my-12">
+    <h2 class="text-3xl font-bold text-darkBlue mb-4">Recent Activity</h2>
+    <ul class="list-disc pl-5">
+        <li>Activity 1 - Details</li>
+        <li>Activity 2 - Details</li>
+        <li>Activity 3 - Details</li>
+    </ul>
+</section>
+
+<section id="ai-assistance" class="my-12">
+    <h2 class="text-3xl font-bold text-darkBlue mb-4">AI Assistance</h2>
+    <p>Use our AI system to assist with patient care and task management.</p>
+    <button class="bg-darkGreen text-white py-2 px-4 rounded mt-4">Access AI Assistance</button>
+</section>
+
+<section id="schedule" class="my-12">
+    <h2 class="text-3xl font-bold text-darkBlue mb-4">Update Schedule</h2>
+    <p>Manage your availability and assignments.</p>
+    <button class="bg-darkBlue text-white py-2 px-4 rounded mt-4">Update Schedule</button>
+</section>
+{% endblock %}
+
