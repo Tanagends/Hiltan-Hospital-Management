@@ -45,14 +45,15 @@ Home - Hiltan Hospital
 
 <section id="owner" class="my-12">
     <h2 class="text-4xl font-bold text-darkBlue mb-4">Meet the Owner</h2>
-    <div class="flex flex-wrap items-center">
-        <div class="w-full md:w-1/2 p-4">
-            <img src="{{ url_for('static', filename='images/owner.jpg') }}" alt="Owner Image" class="w-full h-auto rounded-full mx-auto max-w-sm">
-        </div>
-        <div class="w-full md:w-1/2 p-4">
+    <div class="flex justify-center items-center w-screen">
+      <div class="container grid grid-cols-1 md:grid-cols-2 gap-24 items-center min-h-[512px] py-24">
+            <img src="{{ url_for('static', filename='images/owner.jpg') }}" alt="Owner Image" class="w-full h-auto rounded-3xl">
+  
+        <div class="flex flex-col gap-4 items-start">
             <h3 class="text-2xl font-semibold">John Doe</h3>
             <p>John is the developer and visionary behind Hiltan Hospital. With a background in software development and a passion for healthcare, John created this platform to make healthcare more accessible and efficient.</p>
         </div>
+      </div>
     </div>
 </section>
 
