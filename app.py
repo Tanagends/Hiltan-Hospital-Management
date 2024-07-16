@@ -32,7 +32,13 @@ def load_user(user_id):
             return user
     return None
 from auth import auth
+from views.nurse import nurse_bp
+from views.patient import patient_bp
+from views.doctor import doctor_bp
 app.register_blueprint(auth)
+app.register_blueprint(nurse_bp, url_prefix='/nurse')
+app.register_blueprint(doctor_bp, url_prefix='/doctor')
+app.register_blueprint(patient_bp, url_prefix='/patient')
 
 @app.route('/', strict_slashes=False)
 def index():
