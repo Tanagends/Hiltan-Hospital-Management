@@ -43,7 +43,7 @@ app.register_blueprint(patient_bp, url_prefix='/patient')
 @app.route('/', strict_slashes=False)
 def index():
     """Landing page"""
-    return render_template('landing.html')
+    return render_template('land2.html')
 
 if __name__ == "__main__":
     with app.app_context():
