@@ -6,7 +6,7 @@ from flask_login import login_required
 patient_bp = Blueprint('patient_bp', __name__)
 
 
-@patient_bp.route('/')
+#@patient_bp.route('/')
 @login_required
 def patient_index():
     """Doctors dashboard"""

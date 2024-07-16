@@ -19,7 +19,7 @@ migrate = Migrate(app, db)
 login_manager = LoginManager(app)
 bcrypt = Bcrypt(app)
 
-login_manager.login_view = 'login'
+login_manager.login_view = 'auth.login'
 
 from models import Patient, Doctor, Nurse, Prescription, Diagnosis
 @login_manager.user_loader

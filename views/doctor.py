@@ -7,7 +7,7 @@ doctor_bp = Blueprint('doctor_bp', __name__)
 
 
 @doctor_bp.route('/')
-@login_required
+#@login_required
 def doctor_index():
     """Doctors dashboard"""
     return render_template('doctor_home.html')
