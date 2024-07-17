@@ -11,3 +11,5 @@ class Patient(BasePerson):
 
     state = db.Column(db.String(50))
     diagnosis = db.relationship('Diagnosis', backref='patient')
+    nurse_tasks = db.relationship('Task', backref='patient')
+    bookings = db.relationship('Booking', backref='patient')

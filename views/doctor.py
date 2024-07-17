@@ -1,7 +1,7 @@
 """doctors view"""
 from flask import Blueprint, render_template, abort
-from flask_login import login_required
-from models import Patient, Doctor, Nurse, Prescription, Diagnosis, Booking, Diagnosis
+from flask_login import login_required, current_user
+from models import Patient, Doctor, Nurse, Prescription, Diagnosis, Booking, Task
 
 
 doctor_bp = Blueprint('doctor_bp', __name__)
@@ -13,7 +13,9 @@ def doctor_index():
     """Doctors dashboard"""
     patients = Patients.qeury.limit(6).all()
     recent_diagnosis = Diagnosis.query.order_by(Diagnosis.date_created.desc()).limit(3)
-    pending_bookings = Booking.query.filter(Booking.doctor_id == 
+    pending_bookings = Booking.query.filter(Booking.doctor_id == current_user.id).\
+                       filter(Booking.status == "pending").all()
+
 
     return render_template('doctor_home.html')
 
