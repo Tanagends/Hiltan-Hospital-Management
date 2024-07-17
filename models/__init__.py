@@ -31,4 +31,5 @@ from models.nurse import Nurse
 from models.doctor import Doctor
 from models.diagnosis import Diagnosis
 from models.patient import Patient
-
+from models.task import Task
+from models.booking import Booking

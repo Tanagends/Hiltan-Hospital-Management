@@ -11,3 +11,4 @@ class Nurse(DoctorNurseBase):
 
     max_capacity = db.Column(db.Integer, nullable=False)
     patients = db.relationship('Patient', secondary=nurse_patient, backref='nurses')
+    tasks = db.relationship('Task', backref='nurse')
