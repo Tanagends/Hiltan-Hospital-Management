@@ -9,8 +9,8 @@ class Task(Base):
 
     __tablename__ = "tasks"
 
-    patient_id = db.Column(db.String(100))
-    doctor_id = db.Column(db.String(100), nullable=False)
-    nurse_id = db.Column(db.String(100))
+    patient_id = db.Column(db.String(100), db.ForeignKey('patients.id'))
+    doctor_id = db.Column(db.String(100), db.ForeignKey('doctors.id'), nullable=False)
+    nurse_id = db.Column(db.String(100), db.ForeignKey('nurses.id'))
     description = db.Text
-    status = db.Column(db.String(100))
+    status = db.Column(db.String(100), default='pending')

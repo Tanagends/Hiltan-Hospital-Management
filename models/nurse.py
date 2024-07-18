@@ -9,6 +9,6 @@ class Nurse(DoctorNurseBase):
 
     __tablename__ = "nurses"
 
-    max_capacity = db.Column(db.Integer, nullable=False)
+    availability = db.Column(db.Integer, nullable=False, default=1)
     patients = db.relationship('Patient', secondary=nurse_patient, backref='nurses')
     tasks = db.relationship('Task', backref='nurse')

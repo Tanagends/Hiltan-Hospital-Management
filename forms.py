@@ -88,3 +88,28 @@ class LoginForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Submit')
+
+
+class TaskForm(FlaskForm):
+    """Task"""
+    description = StringField("Description", validators=[DataRequired()])
+    patient_id = StringField('Patient ID', validators=[DataRequired()])
+    doctor_id = StringField('Doctor ID', validators=[DataRequired()])
+    nurse_id = StringField('Nurse ID', validators=[DataRequired()])
+
+
+class DiagnosisForm(FlaskForm):
+    """Diagnosis"""
+
+    disease = StringField('Disease(s)', validators=[DataRequired()])
+    description = StringField("Description", validators=[DataRequired()])
+    date = DateField('Date', validators=[DataRequired()])
+    patient_id = StringField('Patient ID', validators=[DataRequired()])
+
+
+class BookingForm(FlaskForm):
+    """Booking"""
+
+    patient_id = StringField('Patient ID', validators=[DataRequired()])
+    note = StringField('Note to doctor')
+
