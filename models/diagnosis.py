@@ -13,3 +13,4 @@ class Diagnosis(Base):
     date = db.Column(db.Date)
     prescriptions = db.relationship('Prescription', backref='diagnosis')
     patient_id = db.Column(db.String(50), db.ForeignKey('patients.id'))
+    current = db.Column(db.Integer, default=1)
