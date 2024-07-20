@@ -1,0 +1,23 @@
+
+{% extends "nurse_layout.html" %}
+
+{% block page_title %}
+Tasks - Nurse's View
+{% endblock %}
+
+{% block main %}
+<section id="tasks" class="my-12">
+    <h2 class="text-3xl font-bold text-darkBlue mb-4">Your Tasks</h2>
+    <div class="bg-white p-4 rounded shadow">
+        <ul class="list-disc pl-5">
+            {% for task in tasks %}
+            <li>
+                <strong>{{ task.title }}</strong>: {{ task.details }}
+                <p>Assigned by: {{ task.assigned_by }}</p>
+                <p>Due: {{ task.due_date }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+{% endblock %}

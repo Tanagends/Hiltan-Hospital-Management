@@ -1,0 +1,23 @@
+
+{% extends "patient_layout.html" %}
+
+{% block page_title %}
+Medical History - Patient's View
+{% endblock %}
+
+{% block main %}
+<section id="medical_history" class="my-12">
+    <h2 class="text-3xl font-bold text-darkBlue mb-4">Your Medical History</h2>
+    <div class="bg-white p-4 rounded shadow">
+        <ul class="list-disc pl-5">
+            {% for record in medical_history %}
+            <li>
+                <strong>{{ record.condition }}</strong> diagnosed on {{ record.date }}
+                <p>Treatment: {{ record.treatment }}</p>
+                <p>Doctor: {{ record.doctor_name }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+{% endblock %}

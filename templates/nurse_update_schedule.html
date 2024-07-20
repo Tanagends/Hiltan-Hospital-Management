@@ -1,0 +1,33 @@
+
+{% extends "nurse_layout.html" %}
+
+{% block page_title %}
+Update Schedule - Nurse's View
+{% endblock %}
+
+{% block main %}
+<section id="update_schedule" class="my-12">
+    <h2 class="text-3xl font-bold text-darkBlue mb-4">Update Your Schedule</h2>
+    <div class="bg-white p-4 rounded shadow">
+        <form action="{{ url_for('update_schedule') }}" method="POST">
+            <div class="mb-4">
+                <label for="date" class="block text-sm font-medium text-gray-700">Date</label>
+                <input type="date" name="date" id="date" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+            </div>
+            <div class="mb-4">
+                <label for="start_time" class="block text-sm font-medium text-gray-700">Start Time</label>
+                <input type="time" name="start_time" id="start_time" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+            </div>
+            <div class="mb-4">
+                <label for="end_time" class="block text-sm font-medium text-gray-700">End Time</label>
+                <input type="time" name="end_time" id="end_time" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+            </div>
+            <div class="mb-4">
+                <label for="details" class="block text-sm font-medium text-gray-700">Details</label>
+                <textarea name="details" id="details" rows="3" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"></textarea>
+            </div>
+            <button type="submit" class="bg-darkBlue text-white px-4 py-2 rounded hover:bg-lightBlue">Update Schedule</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

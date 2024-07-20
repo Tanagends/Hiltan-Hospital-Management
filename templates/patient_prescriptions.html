@@ -1,0 +1,22 @@
+
+{% extends "patient_layout.html" %}
+
+{% block page_title %}
+Prescriptions - Patient's View
+{% endblock %}
+
+{% block main %}
+<section id="prescriptions" class="my-12">
+    <h2 class="text-3xl font-bold text-darkBlue mb-4">Your Prescriptions</h2>
+    <div class="bg-white p-4 rounded shadow">
+        <ul class="list-disc pl-5">
+            {% for prescription in prescriptions %}
+            <li>
+                <strong>{{ prescription.medication }}</strong>: {{ prescription.dosage }}
+                <p>Prescribed by: {{ prescription.doctor_name }} on {{ prescription.date }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+{% endblock %}

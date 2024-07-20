@@ -1,0 +1,32 @@
+
+{% extends "patient_layout.html" %}
+
+{% block page_title %}
+Bookings - Patient's View
+{% endblock %}
+
+{% block main %}
+<section id="bookings" class="my-12">
+    <h2 class="text-3xl font-bold text-darkBlue mb-4">Your Bookings</h2>
+    <div class="bg-white p-4 rounded shadow">
+        <table class="min-w-full bg-white">
+            <thead class="bg-lightBlue text-darkBlue">
+                <tr>
+                    <th class="w-1/3 py-2">Date</th>
+                    <th class="w-1/3 py-2">Doctor</th>
+                    <th class="w-1/3 py-2">Details</th>
+                </tr>
+            </thead>
+            <tbody class="text-darkGray">
+                {% for booking in bookings %}
+                <tr>
+                    <td class="border px-4 py-2">{{ booking.date }}</td>
+                    <td class="border px-4 py-2">{{ booking.doctor_name }}</td>
+                    <td class="border px-4 py-2">{{ booking.details }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}

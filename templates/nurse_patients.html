@@ -1,0 +1,22 @@
+
+{% extends "nurse_layout.html" %}
+
+{% block page_title %}
+Patients - Nurse's View
+{% endblock %}
+
+{% block main %}
+<section id="patients" class="my-12">
+    <h2 class="text-3xl font-bold text-darkBlue mb-4">Patients</h2>
+    <div class="bg-white p-4 rounded shadow">
+        <ul class="list-disc pl-5">
+            {% for patient in patients %}
+            <li>
+                <strong>{{ patient.name }}</strong>: {{ patient.details }}
+                <p>Doctor: {{ patient.doctor_name }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+{% endblock %}
