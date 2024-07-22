@@ -1,18 +1,9 @@
-{% extends "layout.html" %}
+{% extends "doctor_layout.html" %}
 
 {% block page_title %}
 Doctor Home - Hiltan Hospital
 {% endblock %}
 
-{% block navlinks %}
-<a href="#" class="text-white hover:underline">Home</a>
-<a href="#profile" class="text-white hover:underline">Patients</a>
-<a href="#patients" class="text-white hover:underline">Bookings</a>
-<a href="#tasks" class="text-white hover:underline">Nurses Assigned</a>
-<a href="#diagnoses" class="text-white hover:underline">Diagnoses</a>
-<a href="#ai-assistance" class="text-white hover:underline">AI Assistance</a>
-<a href="#schedule" class="text-white hover:underline">Update Schedule</a>
-{% endblock %}
 
 {% block main %}
 <section id="profile" class="my-12 text-center">
@@ -54,6 +45,7 @@ Doctor Home - Hiltan Hospital
     </ul>
 </section>
 
+<!--
 <section id="diagnoses" class="my-12">
     <h2 class="text-3xl font-bold text-darkBlue mb-4">Recent Diagnoses</h2>
     <ul class="list-disc pl-5">
@@ -74,5 +66,6 @@ Doctor Home - Hiltan Hospital
     <p>Manage your availability and appointments.</p>
     <button class="bg-darkBlue text-white py-2 px-4 rounded mt-4">Update Schedule</button>
 </section>
+-->
 {% endblock %}
 

@@ -29,7 +29,7 @@ def booking():
 
     form = BookingForm()
 
-    if form.validate_on_submit():
+    #if form.validate_on_submit():
         #logic for saving a booking
 
     return render_template('booking.html')
@@ -47,8 +47,8 @@ def diagnosis(patient_id=None):
 
     return render_template('doctor_diagnosis.html', patient=patient, diagnosis=diagnosis)
 
-@doctor_bp.route('/nurses', strict_slashes=False)
-@doctor_bp.route('/nurses/<string:nurse_id>', strict_slashes=False)
+@patient_bp.route('/nurses', strict_slashes=False)
+@patient_bp.route('/nurses/<string:nurse_id>', strict_slashes=False)
 def nurses(nurse_id=None):
     """A view for all nurses or a single nurse"""
     
