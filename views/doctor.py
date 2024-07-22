@@ -32,7 +32,7 @@ def doctor_index():
 def all_patients(patient_id=None):
     """View for all patients"""
     if patient_id is None:
-        patients = Doctor.query.get(current_user.id).patients
+        patients = current_user.patients
         return render_template('doctor_patients.html', patients=patients)
     else:
         patient = Patient.query.get(patient_id)
@@ -68,6 +68,7 @@ def delete_booking(booking_id):
     booking.status = 'pending'
     booking.doctor_id = None
     current_user.bookings.remove(booking)
+    db.session.commit()
     return render_template(url_for('doctor_bp.booking'))
 
 
