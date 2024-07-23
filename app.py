@@ -21,7 +21,7 @@ bcrypt = Bcrypt(app)
 
 login_manager.login_view = 'auth.login'
 
-from models import Patient, Doctor, Nurse, Prescription, Diagnosis, Task, Booking
+from models import Patient, Doctor, Nurse, Prescription, Diagnosis, Task, Booking, DoctorTask
 @login_manager.user_loader
 def load_user(user_id):
     """Loads a user"""

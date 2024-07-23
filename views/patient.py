@@ -11,16 +11,16 @@ patient_bp = Blueprint('patient_bp', __name__)
 #@login_required
 def patient_index():
     """Doctors dashboard"""
-    diagnoses = current_user.diagnosis
+    diagnosis = current_user.diagnosis
 
     current_prescriptions = []
-    for diag in diagnoses:
+    for diag in diagnosis:
         if diag.current == 1:
             current_prescriptions += diag.prescriptions
-    assigned_doctors = patient.doctors
-    diagnosis_history = [diag for diag in diagnoses if diag.current == 0]
+    assigned_doctors = current_user.doctors
     
-    return render_template('patient_home.html', current_prescriptions=current_prescriptions)
+    return render_template('patient_home.html', current_prescriptions=current_prescriptions,
+                           assignd_doctors=assigned_doctors)
 
 
 @patient_bp.route('/booking')
@@ -29,10 +29,10 @@ def booking():
 
     form = BookingForm()
 
-    #if form.validate_on_submit():
-        #logic for saving a booking
+    if form.validate_on_submit():
+        logic for saving a booking
 
-    return render_template('booking.html')
+    return render_template('nurse_booking.html')
 
 
 @patient_bp.route('/diagnosis/', strict_slashes=False)

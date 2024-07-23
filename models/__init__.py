@@ -33,3 +33,4 @@ from models.diagnosis import Diagnosis
 from models.patient import Patient
 from models.task import Task
 from models.booking import Booking
+from models.doctor_task import DoctorTask

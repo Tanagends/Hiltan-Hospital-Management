@@ -113,3 +113,23 @@ class BookingForm(FlaskForm):
     patient_id = StringField('Patient ID', validators=[DataRequired()])
     note = StringField('Note to doctor')
 
+
+class DoctorTaskForm:
+    """Doctor's own Task"""
+
+    doctor_id = StringField('Doctor ID', validators=[DataRequired()])
+    patient_id = StringField('Patient ID')
+    description = StringField('Description')
+    due = DateField('Date', validators=[DataRequired()])
+
+class PrescriptionForm:
+    """Prescription for a diagnoses"""
+
+    medicine =  StringField('Medicine', validators=[DataRequired()])
+    disease  = StringField('Disease(s)', validators=[DataRequired()])
+    instruction =  StringField('Instructions')
+    dosage =  StringField('Dosage', validators=[DataRequired()])
+    start_date = DateField('Start date')
+    finish_date = DateField('Finish date')
+    diagnosis_id =  StringField('Diagnosis_ID', validators=[DataRequired()])
+
