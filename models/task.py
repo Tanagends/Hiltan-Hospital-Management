@@ -13,4 +13,4 @@ class Task(Base):
     doctor_id = db.Column(db.String(100), db.ForeignKey('doctors.id'), nullable=False)
     nurse_id = db.Column(db.String(100), db.ForeignKey('nurses.id'))
     description = db.Text
-    status = db.Column(db.String(100), default='pending')
+    status = db.Column(db.String(100), default='pending') #completed

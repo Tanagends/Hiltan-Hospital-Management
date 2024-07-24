@@ -92,7 +92,7 @@ def done_bookings(booking_id):
 def diagnosis(patient_id=None):
     """ A patient diagnosis portal"""
     if patient_id is None:
-        diagnosis = doctor.diagnosis
+        diagnosis = current_user.diagnosis
         return render_template('doctor_diagnosis.html', diagnosis=diagnosis)
     #diagnosis form
     form = DiagnosisForm()
@@ -127,12 +127,13 @@ def delete_diagnosis(diag_id):
     return render_template(url_for('doctor_bp.diagnosis'))
 
 @doctor_bp.route('/diagnosis/<string:diag_id>/toggle_not_current', strict_slashes=False)
-def delete_diagnosis(diag_id):
+def toggle_diagnosis(diag_id):
     """Deletes a diagnoses from being the doctor's
        Only the patient can ultimately delete it
     """
     diagnosis = Diagnosis.query.get(diag_id)
     diagnosis.current = 0
+    
     db.session.commit()
     return render_template(url_for('doctor_bp.diagnosis'))
 
@@ -176,14 +177,14 @@ def delete_prescription(prescription_id):
 
 
 @doctor_bp.route('/nurses', strict_slashes=False, methods=["GET", "POST"])
-@doctor_bp.route('/nurses/<string:nurse_id>/remove', strict_slashes=False)
-def nurses(nurse_id=None):
+@doctor_bp.route('/nurses/<string:task_id>/remove', strict_slashes=False)
+def nurses(task_id=None):
     """A view for all nurses or and my nurse"""
     
     if nurse_id is None:
         form = TaskForm()
         nurses = Nurse.query.filter(Nurse.availability == 1).limit(3).all()
-        #my_nurses = current_user.nurses
+        my_nurses = current_user.nurses
         if form.validate_on_submit():
             excl_fields = []
             data = {k:v for k, v in form.data.items() if k not in excl_fields}
@@ -193,7 +194,7 @@ def nurses(nurse_id=None):
             current_user.nurses.append(nurse)
             db.session.add(new_task)
             db.session.commit()
-        return render_template("doctor_nurses.html", nurses=nurses)#my_nurses=my_nurses
+        return render_template("doctor_nurses.html", nurses=nurses, my_nurses=my_nurses)
 
     else:
         nurse = Nurse.query.get(nurse_id)

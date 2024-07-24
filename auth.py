@@ -67,10 +67,7 @@ def login():
             if user and bcrypt.check_password_hash(user[0].password, pwd.strip()):
                 login_user(user[0])
                 return "logged in"
-        flash("Invalid login credentials", "danger")
-    else:
-        print('no')
-        print(form.errors)
+        form.password.errors.append("Invalid login details")
     return render_template("log.html", form=form)
 
 
@@ -79,4 +76,4 @@ def login():
 def logout():
     """logs out user"""
     logout_user()
-    return "logged out"
+    return render_template("land2.html")

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ url_for('static', filename='css/output.css') }}" rel="stylesheet">
+    <title>Login</title>
+</head>
+<body class="bg-lightGray text-darkGray">
+    <div class="container mx-auto p-6">
+        <h1 class="text-center text-3xl text-darkBlue mb-6">Welcome to Login for Hiltan Hospital</h1>
+        <form action="/login" method="post">
+            <fieldset class="border p-4 rounded-lg shadow-lg">
+                <legend class="text-lg font-semibold text-darkGreen mb-4">Hiltan Login</legend>
+                
+                <div class="mb-4">
+		    {{ form.csrf_token }}
+                    {{ form.email.label(class="block mb-2 text-sm") }} 
+                    {{ form.email(class="border rounded p-2 w-full") }} 
+                    <ul>
+                        {% for error in form.email.errors %}
+                        <li class="text-red-600 text-sm">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="mb-4">
+                    {{ form.password.label(class="block mb-2 text-sm") }} 
+                    {{ form.password(class="border rounded p-2 w-full") }} 
+                    <ul>
+                        {% for error in form.password.errors %}
+                        <li class="text-red-600 text-sm">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="mb-6">
+                    {{ form.submit(class="bg-darkBlue text-white rounded p-2 w-full hover:bg-darkGreen transition duration-200") }}
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</body>
+</html>
+

@@ -4,9 +4,10 @@
 Doctor Home - Hiltan Hospital
 {% endblock %}
 
+
 {% block main %}
 <section id="profile" class="my-12 text-center">
-    <img src="{{ url_for('static', filename='images/hospital.jpg') }}" alt="Doctor Profile Picture" class="w-24 h-24 rounded-full mx-auto object-cover">
+    <img src="{{ url_for('static', filename='images/hospital.jpg') }}" alt="Doctor Profile Picture" class="w-32 h-32 rounded-full mx-auto">
     <h2 class="text-3xl font-bold text-darkBlue mt-4">Welcome, Dr. [Doctor Name]</h2>
     <p class="text-lg mt-2">Here's a summary of your current assignments and tasks.</p>
 </section>
@@ -16,7 +17,7 @@ Doctor Home - Hiltan Hospital
     <div class="flex flex-wrap">
         <div class="w-full md:w-1/2 p-4">
             <div class="flex items-center">
-                <img src="{{ url_for('static', filename='images/contact.jpg') }}" alt="Patient Profile Picture" class="w-16 h-16 rounded-full mr-4 object-cover">
+                <img src="{{ url_for('static', filename='images/contact.jpg') }}" alt="Patient Profile Picture" class="w-16 h-16 rounded-full mr-4">
                 <div>
                     <h3 class="text-2xl font-semibold">Patient 1</h3>
                     <p>Condition: Hypertension</p>
@@ -25,7 +26,7 @@ Doctor Home - Hiltan Hospital
         </div>
         <div class="w-full md:w-1/2 p-4">
             <div class="flex items-center">
-                <img src="{{ url_for('static', filename='images/patient2.jpg') }}" alt="Patient Profile Picture" class="w-16 h-16 rounded-full mr-4 object-cover">
+                <img src="{{ url_for('static', filename='images/patient2.jpg') }}" alt="Patient Profile Picture" class="w-16 h-16 rounded-full mr-4">
                 <div>
                     <h3 class="text-2xl font-semibold">Patient 2</h3>
                     <p>Condition: Diabetes</p>
@@ -43,5 +44,28 @@ Doctor Home - Hiltan Hospital
         <li>Task 3 - Details</li>
     </ul>
 </section>
+
+<!--
+<section id="diagnoses" class="my-12">
+    <h2 class="text-3xl font-bold text-darkBlue mb-4">Recent Diagnoses</h2>
+    <ul class="list-disc pl-5">
+        <li>Diagnosis 1 - Details</li>
+        <li>Diagnosis 2 - Details</li>
+        <li>Diagnosis 3 - Details</li>
+    </ul>
+</section>
+
+<section id="ai-assistance" class="my-12">
+    <h2 class="text-3xl font-bold text-darkBlue mb-4">AI Diagnosis Assistance</h2>
+    <p>Use our AI system to assist with patient diagnoses and treatment plans.</p>
+    <button class="bg-darkGreen text-white py-2 px-4 rounded mt-4">Access AI Assistance</button>
+</section>
+
+<section id="schedule" class="my-12">
+    <h2 class="text-3xl font-bold text-darkBlue mb-4">Update Schedule</h2>
+    <p>Manage your availability and appointments.</p>
+    <button class="bg-darkBlue text-white py-2 px-4 rounded mt-4">Update Schedule</button>
+</section>
+-->
 {% endblock %}
 

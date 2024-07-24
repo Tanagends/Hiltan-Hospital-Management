@@ -5,14 +5,6 @@
 Nurse Home - Hiltan Hospital
 {% endblock %}
 
-{% block navlinks %}
-<a href="#" class="text-white hover:underline">Home</a>
-<a href="#patients" class="text-white hover:underline">Patients</a>
-<a href="#tasks" class="text-white hover:underline">Tasks</a>
-<a href="#ai-assistance" class="text-white hover:underline">AI Assistance</a>
-<a href="#schedule" class="text-white hover:underline">Update Schedule</a>
-{% endblock %}
-
 {% block main %}
 <section id="profile" class="my-12 text-center">
     <img src="{{ url_for('static', filename='images/nurse.jpg') }}" alt="Nurse Profile Picture" class="w-32 h-32 rounded-full mx-auto">

@@ -1,33 +1,11 @@
+{% extends "layout.html" %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="{{ url_for('static', filename='css/output.css') }}" rel="stylesheet">
-    <title>{% block page_title %}Patient's View - Hiltan Hospital{% endblock %}</title>
-</head>
-<body class="bg-lightGray text-darkGray">
-    <header class="bg-darkBlue text-white p-4">
-        <nav class="container mx-auto flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold">Hiltan Hospital</a>
-            <div class="space-x-4">
-                <a href="{{ url_for('patient_home') }}" class="text-white hover:underline">Home</a>
-                <a href="{{ url_for('patient_prescriptions') }}" class="text-white hover:underline">Prescriptions</a>
-                <a href="{{ url_for('patient_medical_history') }}" class="text-white hover:underline">Medical History</a>
-                <a href="{{ url_for('patient_bookings') }}" class="text-white hover:underline">Bookings</a>
-            </div>
-        </nav>
-    </header>
 
-    <main class="container mx-auto p-6">
-        {% block main %}{% endblock %}
-    </main>
-
-    <footer class="bg-darkGray text-white p-6 mt-8 mb-0">
-        <div class="container mx-auto text-center">
-            <p>&copy; 2024 Hiltan Hospital. Making sure you live a healthy and happy life.</p>
-        </div>
-    </footer>
-</body>
-</html>
+{% block navlinks %}
+<a href="/patient" class="text-white hover:underline">Home</a>
+<a href="/patient/prescription" class="text-white hover:underline">Patients</a>
+<a href="/patient/bookings" class="text-white hover:underline">Bookings</a>
+<a href="/patient/diagnosis" class="text-white hover:underline">Medical History</a>
+<!--a href="/doctor/diagnoses" class="text-white hover:underline">Healthy-Habits</a-->
+<!--a href="/ai-assistance" class="text-white hover:underline">AI Assistance</a-->
+{% endblock %}
