@@ -30,6 +30,13 @@ class BasePerson(Base):
     password = db.Column(db.String(200))
     address = db.Column(db.String(200))
 
+    @property
+    def age(self):
+        # Calculate age based on DOB
+        today = date.today()
+        age = today.year - self.dob.year - ((today.month, today.day) < (self.dob.month, self.dob.day))
+        return age
+
 
 class DoctorNurseBase(BasePerson):
     """Common fields for doctors and nurses"""

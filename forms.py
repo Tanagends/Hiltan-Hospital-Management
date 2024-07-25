@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
-from wtforms import StringField, DateField, SubmitField, BooleanField, SelectField, PasswordField, RadioField, TimeField, IntegerField
+from wtforms import StringField, DateField, SubmitField, BooleanField, SelectField, PasswordField, RadioField, TimeField, IntegerField, TextAreaField
 from wtforms.validators import InputRequired, Email, ValidationError, DataRequired, Length, EqualTo
 from datetime import date
 from models import Doctor, Nurse, Patient
@@ -110,19 +110,20 @@ class DiagnosisForm(FlaskForm):
 class BookingForm(FlaskForm):
     """Booking"""
 
+    date = DateField('Preferred Date')
+    time = TimeField("Preferred Time")
     patient_id = StringField('Patient ID', validators=[DataRequired()])
     note = StringField('Note to doctor')
 
 
-class DoctorTaskForm:
+class DoctorTaskForm(FlaskForm):
     """Doctor's own Task"""
 
-    doctor_id = StringField('Doctor ID', validators=[DataRequired()])
+    doctor_id = StringField('Doctor ID')
     patient_id = StringField('Patient ID')
-    description = StringField('Description')
-    due = DateField('Date', validators=[DataRequired()])
+    description = TextAreaField('Description')
 
-class PrescriptionForm:
+class PrescriptionForm(FlaskForm):
     """Prescription for a diagnoses"""
 
     medicine =  StringField('Medicine', validators=[DataRequired()])

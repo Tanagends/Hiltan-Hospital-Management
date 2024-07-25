@@ -9,7 +9,7 @@ class Doctor(DoctorNurseBase):
     __tablename__ = "doctors"
 
     specialty = db.Column(db.String(50))
-    nurse_tasks = db.relationship('Task', backref='doctor')
+    tasks = db.relationship('Task', backref='doctor')
     bookings = db.relationship('Booking', backref='doctor')
     own_tasks = db.relationship('DoctorTask', backref='doctor')
     nurses = db.relationship('Nurse', secondary=doctor_nurse, backref=('doctors'))

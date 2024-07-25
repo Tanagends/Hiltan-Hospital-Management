@@ -1,0 +1,25 @@
+{% extends "doctor_layout.html" %}
+
+{% block page_title %}
+Assign Nurse - Hiltan Hospital
+{% endblock %}
+
+{% block main %}
+<section id="assign-nurse" class="my-12">
+    <h2 class="text-3xl font-bold text-darkBlue mb-4">Assign Task to Nurse</h2>
+    <form action="" method="post" class="bg-white shadow-md rounded-lg p-4">
+        {{ form.hidden_tag() }}
+        <div class="mb-4">
+            {{ form.description.label(class="block mb-2 text-sm") }}
+            {{ form.description(class="border rounded p-2 w-full") }}
+            <ul>
+                {% for error in form.description.errors %}
+                <li class="text-red-600 text-sm">{{ error }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <button type="submit" class="bg-lightBlue text-white py-2 px-4 rounded">Assign Task</button>
+    </form>
+</section>
+{% endblock %}
+

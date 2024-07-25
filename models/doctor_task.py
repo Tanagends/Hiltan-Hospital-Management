@@ -12,3 +12,4 @@ class DoctorTask(Base):
     patient_id = db.Column(db.String(100), db.ForeignKey('patients.id'))
     description =db.Column(db.Text)
     due = db.Column(db.DateTime)
+

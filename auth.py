@@ -18,7 +18,7 @@ def save_profile_pic(image):
     _, ext = os.path.splitext(image.filename)
     filenam = os.path.join(str(uuid4()) + ext)
     filename = secure_filename(filenam)
-    filepath = os.path.join('static/images', filename)
+    filepath = os.path.join('/static/images', filename)
     try:
         image.save(filepath)
         return filepath
@@ -66,7 +66,8 @@ def login():
             from app import bcrypt
             if user and bcrypt.check_password_hash(user[0].password, pwd.strip()):
                 login_user(user[0])
-                return "logged in"
+                flash("Login successful", "success")
+                return render_template("doctor_home.html")
         form.password.errors.append("Invalid login details")
     return render_template("log.html", form=form)
 

@@ -1,0 +1,62 @@
+{% extends "doctor_layout.html" %}
+
+{% block page_title %}
+Doctor Nurses - Hiltan Hospital
+{% endblock %}
+
+{% block main %}
+<section id="nurse-tasks" class="my-12">
+    <h2 class="text-3xl font-bold text-darkBlue mb-4">Assigned Tasks</h2>
+    <div class="flex flex-wrap">
+        {% for task in tasks %}
+        <div class="w-full md:w-1/2 p-4">
+            <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                <div class="p-4">
+                    <div class="flex items-center mb-4">
+			    <img src={{ task.nurse.profile_pic }} alt="Nurse Profile Picture" class="w-16 h-16 rounded-full mr-4 object-cover">
+                        <div>
+                            <h3 class="text-2xl font-semibold">{{ task.nurse.name }} {{ task.nurse.surname }}</h3>
+                            <p>Age: {{ task.nurse.age }}</p>
+                            <p>Gender: {{ task.nurse.gender }}</p>
+                        </div>
+                    </div>
+                    <p>{{ task.description }}</p>
+                    <p>Date Created: {{ task.date_created.strftime('%Y-%m-%d') }}</p>
+                    <div class="mt-2">
+                        <form action="{{ url_for('doctor_bp.nurses', task_id=task.id) }}" method="post" class="inline">
+                            <button type="submit" class="bg-red-600 text-white py-1 px-3 rounded">Remove</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section id="available-nurses" class="my-12">
+    <h2 class="text-3xl font-bold text-darkBlue mb-4">Available Nurses</h2>
+    <div class="flex flex-wrap">
+        {% for nurse in nurses %}
+        <div class="w-full md:w-1/3 p-4">
+            <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                <div class="p-4">
+                    <div class="flex items-center mb-4">
+                        <img src="{{ nurse.profile_pic }}" alt="Nurse Profile Picture" class="w-16 h-16 rounded-full mr-4 object-cover">
+                        <div>
+                            <h3 class="text-2xl font-semibold">{{ nurse.name }} {{ nurse.surname }}</h3>
+                            <p>Age: {{ nurse.age }}</p>
+                            <p>Gender: {{ nurse.gender }}</p>
+                        </div>
+                    </div>
+                    <form action="{{ url_for('doctor_bp.assign_nurse', nurse_id=nurse.id) }}" method="post">
+                        <button type="submit" class="bg-lightBlue text-white py-1 px-3 rounded">Assign</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
+

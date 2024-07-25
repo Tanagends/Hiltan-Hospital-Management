@@ -1,0 +1,30 @@
+{% extends "doctor_layout.html" %}
+
+{% block page_title %}
+Doctor Prescriptions - Hiltan Hospital
+{% endblock %}
+
+{% block main %}
+<section id="prescriptions" class="my-12">
+    <h2 class="text-3xl font-bold text-darkBlue mb-4">Prescriptions</h2>
+    <div class="flex flex-wrap">
+        {% for prescription in prescriptions %}
+        <div class="w-full md:w-1/2 p-4">
+            <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                <div class="p-4">
+                    <p>{{ prescription.prescription }}</p>
+                    <p>Date Created: {{ prescription.date_created.strftime('%Y-%m-%d') }}</p>
+                    <div class="mt-2">
+                        <form action="{{ url_for('doctor_bp.delete_prescription', prescription_id=prescription.id) }}" method="post" class="inline">
+                            <button type="submit" class="bg-red-600 text-white py-1 px-3 rounded">Delete</button>
+                        </form>
+                        <a href="{{ url_for('doctor_bp.diagnosis_view', diagnosis_id=prescription.diagnosis_id) }}" class="bg-lightBlue text-white py-1 px-3 rounded">View Diagnosis</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
+

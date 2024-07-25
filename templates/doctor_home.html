@@ -6,42 +6,80 @@ Doctor Home - Hiltan Hospital
 
 {% block main %}
 <section id="profile" class="my-12 text-center">
-    <img src="{{ url_for('static', filename='images/hospital.jpg') }}" alt="Doctor Profile Picture" class="w-24 h-24 rounded-full mx-auto object-cover">
-    <h2 class="text-3xl font-bold text-darkBlue mt-4">Welcome, Dr. [Doctor Name]</h2>
+    <div class="w-24 h-24 rounded-full overflow-hidden mx-auto">
+	    <img src={{ current_user.profile_pic }} alt="Doctor Profile Picture" class="w-full h-full object-cover">
+    </div>
+    <h2 class="text-3xl font-bold text-darkBlue mt-4">Welcome, Dr. {{ current_user.name }} {{ current_user.surname }}</h2>
     <p class="text-lg mt-2">Here's a summary of your current assignments and tasks.</p>
 </section>
 
 <section id="patients" class="my-12">
     <h2 class="text-3xl font-bold text-darkBlue mb-4">Assigned Patients</h2>
     <div class="flex flex-wrap">
+        {% for patient in patients %}
         <div class="w-full md:w-1/2 p-4">
-            <div class="flex items-center">
-                <img src="{{ url_for('static', filename='images/contact.jpg') }}" alt="Patient Profile Picture" class="w-16 h-16 rounded-full mr-4 object-cover">
-                <div>
-                    <h3 class="text-2xl font-semibold">Patient 1</h3>
-                    <p>Condition: Hypertension</p>
+            <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                <div class="flex items-center p-4">
+                    <div class="w-16 h-16 rounded-full overflow-hidden mr-4">
+                        <img src={{ patient.profile_pic }} alt="Patient Profile Picture" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-semibold">{{ patient.first_name }} {{ patient.surname }}</h3>
+                        <p>Age: {{ patient.age }}</p>
+                        <p>Gender: {{ patient.gender }}</p>
+                        <p>Email: {{ patient.email }}</p>
+                        <div class="mt-2">
+				<form action="/doctor/diagnosis?patient_id={{ patient.patient_id }}" method="post" class="inline">
+                                <button type="submit" class="bg-lightBlue text-white py-1 px-3 rounded">Diagnose</button>
+                            </form>
+                            <form action="/doctor/patients/remove?patient_id={{ patient.patient_id }}" method="post" class="inline ml-2">
+                                <button type="submit" class="bg-red-600 text-white py-1 px-3 rounded">Remove</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="w-full md:w-1/2 p-4">
-            <div class="flex items-center">
-                <img src="{{ url_for('static', filename='images/patient2.jpg') }}" alt="Patient Profile Picture" class="w-16 h-16 rounded-full mr-4 object-cover">
-                <div>
-                    <h3 class="text-2xl font-semibold">Patient 2</h3>
-                    <p>Condition: Diabetes</p>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
     </div>
 </section>
 
 <section id="tasks" class="my-12">
     <h2 class="text-3xl font-bold text-darkBlue mb-4">Tasks</h2>
-    <ul class="list-disc pl-5">
-        <li>Task 1 - Details</li>
-        <li>Task 2 - Details</li>
-        <li>Task 3 - Details</li>
-    </ul>
+    <table class="min-w-full bg-white">
+        <thead>
+            <tr>
+                <th class="py-2 px-4 border-b-2 border-gray-200 text-left">Description</th>
+                <th class="py-2 px-4 border-b-2 border-gray-200 text-left">Date Created</th>
+                <th class="py-2 px-4 border-b-2 border-gray-200 text-left">Mark Done</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+            <tr>
+                <td class="py-2 px-4 border-b border-gray-200">{{ task.description }}</td>
+                <td class="py-2 px-4 border-b border-gray-200">{{ task.date_created }}</td>
+                <td class="py-2 px-4 border-b border-gray-200">
+                    <form action="{{ url_for('doctor_bp.task', task_id=task.id) }}" method="post" class="inline">
+                        <button type="submit" class="text-red-600 hover:text-red-800">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+<section id="new-task" class="my-12">
+    <h2 class="text-3xl font-bold text-darkBlue mb-4">Create New Task</h2>
+    <form action="{{ url_for('doctor_bp.task') }}" method="post" class="space-y-4">
+        <div>
+		{{ form.csrf_token }}
+		{{ form.description.label(class="block mb-2 text-sm") }}
+		{{ form.description(class="border rounded p-2 w-full") }}
+        </div>
+        <button type="submit" class="bg-lightBlue text-white py-2 px-4 rounded">Add Task</button>
+    </form>
 </section>
 {% endblock %}
 
