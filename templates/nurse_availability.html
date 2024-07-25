@@ -1,0 +1,20 @@
+{% extends "nurse_layout.html" %}
+
+
+{% block main %}
+<section id="availability" class="my-12 mx-auto max-w-xl">
+    <h2 class="text-3xl font-bold text-darkBlue mb-4">Update Availability</h2>
+    <form action="{{ url_for('nurse_bp.schedule') }}" method="post" class="bg-white shadow-md rounded-lg p-6">
+        <div class="mb-4">
+            <label for="availability" class="block text-lg font-medium text-darkBlue mb-2">Availability Signal</label>
+            <select id="availability" name="signal" class="form-select mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <option value="1">Available</option>
+                <option value="0">Not Available</option>
+            </select>
+        </div>
+        <div class="flex justify-end">
+            <button type="submit" class="bg-lightBlue text-white py-2 px-4 rounded-lg hover:bg-darkBlue">Update</button>
+        </div>
+    </form>
+</section>
+{% endblock %}

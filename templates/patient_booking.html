@@ -1,0 +1,100 @@
+{% extends "patient_layout.html" %}
+
+{% block page_title %}
+Patient Booking - Hiltan Hospital
+{% endblock %}
+
+{% block main %}
+<section id="booking" class="my-12">
+    <h2 class="text-3xl font-bold text-darkBlue mb-4">Book an Appointment</h2>
+    <div class="bg-white shadow-md rounded-lg p-4 mb-8">
+        <form method="POST" action="/patient/booking">
+            {{ form.hidden_tag() }}
+            <div class="mb-4">
+                {{ form.date.label(class="block text-sm font-bold mb-2") }}
+                {{ form.date(class="border rounded p-2 w-full") }}
+                <ul>
+                    {% for error in form.date.errors %}
+                    <li class="text-red-600 text-sm">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="mb-4">
+                {{ form.time.label(class="block text-sm font-bold mb-2") }}
+                {{ form.time(class="border rounded p-2 w-full") }}
+                <ul>
+                    {% for error in form.time.errors %}
+                    <li class="text-red-600 text-sm">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="mb-4">
+                {{ form.note.label(class="block text-sm font-bold mb-2") }}
+                {{ form.note(class="border rounded p-2 w-full") }}
+                <ul>
+                    {% for error in form.note.errors %}
+                    <li class="text-red-600 text-sm">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="text-right">
+                {{ form.submit(class="bg-lightBlue text-white py-2 px-4 rounded") }}
+            </div>
+        </form>
+    </div>
+
+    <section id="pending-bookings" class="my-12">
+        <h2 class="text-3xl font-bold text-darkBlue mb-4">Pending Bookings</h2>
+        <div class="flex flex-wrap">
+            {% for booking in pending_bookings %}
+            <div class="w-full md:w-1/2 p-4">
+                <div class="bg-white shadow-md rounded-lg p-4">
+                    <p><strong>Date:</strong> {{ booking.date.strftime('%Y-%m-%d') }}</p>
+                    <p><strong>Time:</strong> {{ booking.time }}</p>
+                    <p><strong>Note:</strong> {{ booking.note }}</p>
+                    <div class="mt-2">
+                        <a href="{{ url_for('patient_bp.delete_booking', booking_id=booking.id) }}" class="bg-red-600 text-white py-1 px-3 rounded">Cancel</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section id="confirmed-bookings" class="my-12">
+        <h2 class="text-3xl font-bold text-darkBlue mb-4">Confirmed Bookings</h2>
+        <div class="flex flex-wrap">
+            {% for booking in confirmed_bookings %}
+            <div class="w-full md:w-1/2 p-4">
+                <div class="bg-white shadow-md rounded-lg p-4">
+		    <p><strong>Doctor:</strong> {{ booking.doctor.name }} {{ booking.doctor.surname }}</p>
+                    <p><strong>Date:</strong> {{ booking.date.strftime('%Y-%m-%d') }}</p>
+                    <p><strong>Time:</strong> {{ booking.time }}</p>
+                    <p><strong>Note:</strong> {{ booking.note }}</p>
+                    <div class="mt-2">
+                        <a href="{{ url_for('patient_bp.delete_booking', booking_id=booking.id) }}" class="bg-red-600 text-white py-1 px-3 rounded">Cancel</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section id="done-bookings" class="my-12">
+        <h2 class="text-3xl font-bold text-darkBlue mb-4">Completed Bookings</h2>
+        <div class="flex flex-wrap">
+            {% for booking in done_bookings %}
+            <div class="w-full md:w-1/2 p-4">
+                <div class="bg-white shadow-md rounded-lg p-4">
+		    <p><strong>Doctor:</strong> {{ booking.doctor.name }} {{ booking.doctor.surname }}</p>
+                    <p><strong>Date:</strong> {{ booking.date.strftime('%Y-%m-%d') }}</p>
+                    <p><strong>Time:</strong> {{ booking.time }}</p>
+                    <p><strong>Note:</strong> {{ booking.note }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</section>
+{% endblock %}
+

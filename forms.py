@@ -14,7 +14,7 @@ class BaseForm(FlaskForm):
 
     name = StringField('Name', validators=[DataRequired(),
                                            Length(min=2, max=20)])
-    surname = StringField('surname', validators=[DataRequired(),
+    surname = StringField('Surname', validators=[DataRequired(),
                                                  Length(min=2, max=20)])
     email = StringField('Email', validators=[DataRequired(), Email()])
     dob = DateField('Date of Birth', validators=[DataRequired()])
@@ -93,9 +93,9 @@ class LoginForm(FlaskForm):
 class TaskForm(FlaskForm):
     """Task"""
     description = StringField("Description", validators=[DataRequired()])
-    patient_id = StringField('Patient ID', validators=[DataRequired()])
-    doctor_id = StringField('Doctor ID', validators=[DataRequired()])
-    nurse_id = StringField('Nurse ID', validators=[DataRequired()])
+    patient_id = StringField('Patient ID')
+    doctor_id = StringField('Doctor ID')
+    nurse_id = StringField('Nurse ID')
 
 
 class DiagnosisForm(FlaskForm):
@@ -103,8 +103,8 @@ class DiagnosisForm(FlaskForm):
 
     disease = StringField('Disease(s)', validators=[DataRequired()])
     description = StringField("Description", validators=[DataRequired()])
-    date = DateField('Date', validators=[DataRequired()])
-    patient_id = StringField('Patient ID', validators=[DataRequired()])
+    date = DateField('Date')
+
 
 
 class BookingForm(FlaskForm):
@@ -112,8 +112,9 @@ class BookingForm(FlaskForm):
 
     date = DateField('Preferred Date')
     time = TimeField("Preferred Time")
-    patient_id = StringField('Patient ID', validators=[DataRequired()])
+    patient_id = StringField('Patient ID')
     note = StringField('Note to doctor')
+    submit = SubmitField('Book Appointment')
 
 
 class DoctorTaskForm(FlaskForm):
@@ -122,6 +123,7 @@ class DoctorTaskForm(FlaskForm):
     doctor_id = StringField('Doctor ID')
     patient_id = StringField('Patient ID')
     description = TextAreaField('Description')
+
 
 class PrescriptionForm(FlaskForm):
     """Prescription for a diagnoses"""
@@ -132,5 +134,4 @@ class PrescriptionForm(FlaskForm):
     dosage =  StringField('Dosage', validators=[DataRequired()])
     start_date = DateField('Start date')
     finish_date = DateField('Finish date')
-    diagnosis_id =  StringField('Diagnosis_ID', validators=[DataRequired()])
-
+    submit = SubmitField('Register Prescription')

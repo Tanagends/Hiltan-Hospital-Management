@@ -10,13 +10,26 @@ Create Diagnosis - Hiltan Hospital
     <form action="" method="post" class="bg-white shadow-md rounded-lg p-4">
         {{ form.hidden_tag() }}
         <div class="mb-4">
-            {{ form.diagnosis.label(class="block mb-2 text-sm") }}
-            {{ form.diagnosis(class="border rounded p-2 w-full") }}
+            {{ form.disease.label(class="block mb-2 text-sm") }}
+            {{ form.disease(class="border rounded p-2 w-full") }}
             <ul>
-                {% for error in form.diagnosis.errors %}
+                {% for error in form.disease.errors %}
                 <li class="text-red-600 text-sm">{{ error }}</li>
                 {% endfor %}
             </ul>
+        </div>
+        <div class="mb-4">
+            {{ form.description.label(class="block mb-2 text-sm") }}
+            {{ form.description(class="border rounded p-2 w-full") }}
+            <ul>
+                {% for error in form.description.errors %}
+                <li class="text-red-600 text-sm">{{ error }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="mb-4">
+            {{ form.date.label(class="block mb-2 text-sm") }}
+            {{ form.date(class="border rounded p-2 w-full") }}
         </div>
         <button type="submit" class="bg-lightBlue text-white py-2 px-4 rounded">Submit Diagnosis</button>
     </form>

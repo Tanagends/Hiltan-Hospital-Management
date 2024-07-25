@@ -1,8 +1,8 @@
 """doctors view"""
-from flask import Blueprint, render_template, abort, url_for, redirect
+from flask import Blueprint, render_template, abort, url_for, redirect, flash
 from flask_login import login_required, current_user
 from models import db, Patient, Doctor, Nurse, Prescription, Diagnosis, Booking, Task, DoctorTask
-from forms import TaskForm, DiagnosisForm, DoctorTaskForm
+from forms import TaskForm, DiagnosisForm, DoctorTaskForm, PrescriptionForm
 
 #Add the delete account for all
 #code a flash card and style for feedback throughout the app
@@ -56,7 +56,7 @@ def single_patient(patient_id):
 
 
 @doctor_bp.route('/bookings', strict_slashes=False)
-@doctor_bp.route('/bookings/<string:booking_id>', strict_slashes=False)
+@doctor_bp.route('/bookings/<string:booking_id>', strict_slashes=False, methods=["GET", "POST"])
 def booking(booking_id=None):
     """accept bookings which move to the Schedule section"""
 
@@ -73,7 +73,7 @@ def booking(booking_id=None):
     my_bookings = Booking.query.filter(Booking.doctor_id == current_user.id).\
                                     filter(Booking.status == "booked").all()
     past_bookings = Booking.query.filter(Booking.doctor_id == current_user.id).\
-                                filter(Booking.status == "booked").all()
+                                filter(Booking.status == "done").all()
 
     return render_template('doctor_bookings.html', my_bookings=my_bookings,
                            pending_bookings=pending_bookings, past_bookings=past_bookings)
@@ -97,7 +97,7 @@ def done_bookings(booking_id):
     booking = Booking.query.get(booking_id)
     booking.status = 'done'
     db.session.commit()
-    return render_template(url_for('doctor_bp.booking'))
+    return redirect(url_for('doctor_bp.booking'))
 
 @doctor_bp.route('/diagnosis/<string:patient_id>/create', strict_slashes=False, methods=["GET", "POST"])
 @doctor_bp.route('/diagnosis/', strict_slashes=False)
@@ -152,6 +152,7 @@ def delete_diagnosis(diag_id):
     patient.diagnosis.remove(diagnosis)
     db.session.delete(diagnosis)
     db.session.commit()
+    flash("Diagnosis Removed", "success")
     return render_template(url_for('doctor_bp.diagnosis'))
 
 @doctor_bp.route('/diagnosis/<string:diag_id>/toggle_not_current', strict_slashes=False)
@@ -163,7 +164,7 @@ def toggle_diagnosis(diag_id):
     diagnosis.current = 0
     
     db.session.commit()
-    return render_template(url_for('doctor_bp.diagnosis'))
+    return redirect(url_for('doctor_bp.diagnosis'))
 
 
 
@@ -177,6 +178,7 @@ def prescription(diag_id=None):
        accompanying prescriptions
     """
     if diag_id is None:
+        print("no")
         prescriptions = []
         diag = current_user.diagnosis
         for d in diag:
@@ -184,17 +186,21 @@ def prescription(diag_id=None):
         return render_template("doctor_prescriptions.html", prescriptions=prescriptions)
     form = PrescriptionForm()
     if form.validate_on_submit() and diag_id is not None:
+        print("yes")
         excl_fields = ['csrf_token', 'submit']
         data ={k:v for k, v in form.data.items() if k not in excl_fields}
         data['diagnosis_id'] = diag_id
+        print(data)
         new_prescription = Prescription(**data)
+        print(new_prescription)
         diagnosis = Diagnosis.query.get(diag_id)
         diagnosis.prescriptions.append(new_prescription)
         db.session.add(new_prescription)
         db.session.commit()
+        flash("Prescription successfully made", "success")
         return redirect(url_for('doctor_bp.prescription'))
 
-    return render_template('doctor_prescription_form.html', form=form)
+    return render_template('doctor_prescription_form.html', form=form, diag_id=diag_id)
 
 @doctor_bp.route('/prescription/<string:prescription_id>/delete', strict_slashes=False)
 def delete_prescription(prescription_id):
@@ -205,7 +211,7 @@ def delete_prescription(prescription_id):
     diagnosis.prescriptions.remove(prescription)
     db.session.delete(prescription)
     db.session.commit()
-    return render_template(url_for('doctor_bp.prescription'))
+    return redirect(url_for('doctor_bp.prescription'))
 
 
 

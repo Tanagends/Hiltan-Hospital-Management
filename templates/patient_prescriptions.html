@@ -1,0 +1,52 @@
+{% extends "patient_layout.html" %}
+
+{% block page_title %}
+Patient Prescriptions - Hiltan Hospital
+{% endblock %}
+
+{% block main %}
+<section id="prescriptions" class="my-12">
+    <h2 class="text-3xl font-bold text-darkBlue mb-4">Current Prescriptions</h2>
+    <div class="flex flex-wrap">
+        {% for prescription in current_prescriptions %}
+        <div class="w-full md:w-1/2 p-4">
+            <div class="bg-white shadow-md rounded-lg p-4">
+                <h3 class="text-2xl font-semibold">{{ prescription.medicine }}</h3>
+                <p><strong>Disease:</strong> {{ prescription.disease }}</p>
+                <p><strong>Instruction:</strong> {{ prescription.instruction }}</p>
+                <p><strong>Dosage:</strong> {{ prescription.dosage }}</p>
+                <p><strong>Start Date:</strong> {{ prescription.start_date.strftime('%Y-%m-%d') }}</p>
+                {% if prescription.finish_date %}
+                <p><strong>Finish Date:</strong> {{ prescription.finish_date.strftime('%Y-%m-%d') }}</p>
+                {% endif %}
+                <div class="mt-2">
+                    <a href="{{ url_for('patient_bp.prescription_view', prescription_id=prescription.id) }}" class="bg-lightBlue text-white py-1 px-3 rounded">View Details</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <h2 class="text-3xl font-bold text-darkBlue mt-12 mb-4">Past Prescriptions</h2>
+    <div class="flex flex-wrap">
+        {% for prescription in past_prescriptions %}
+        <div class="w-full md:w-1/2 p-4">
+            <div class="bg-white shadow-md rounded-lg p-4">
+                <h3 class="text-2xl font-semibold">{{ prescription.medicine }}</h3>
+                <p><strong>Disease:</strong> {{ prescription.disease }}</p>
+                <p><strong>Instruction:</strong> {{ prescription.instruction }}</p>
+                <p><strong>Dosage:</strong> {{ prescription.dosage }}</p>
+                <p><strong>Start Date:</strong> {{ prescription.start_date.strftime('%Y-%m-%d') }}</p>
+                {% if prescription.finish_date %}
+                <p><strong>Finish Date:</strong> {{ prescription.finish_date.strftime('%Y-%m-%d') }}</p>
+                {% endif %}
+                <div class="mt-2">
+                    <a href="{{ url_for('patient_bp.prescription_view', prescription_id=prescription.id) }}" class="bg-lightBlue text-white py-1 px-3 rounded">View Details</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
+

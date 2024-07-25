@@ -1,0 +1,40 @@
+{% extends "nurse_layout.html" %}
+
+{% block page_title %}
+Nurse Patients - Hiltan Hospital
+{% endblock %}
+
+{% block main %}
+<section id="current_patients" class="my-12">
+    <h2 class="text-3xl font-bold text-darkBlue mb-4">Current Patients</h2>
+    <div class="flex flex-wrap">
+        {% for patient in current_patients %}
+        <div class="w-full md:w-1/2 p-4">
+            <div class="border rounded-lg p-4">
+                <h3 class="text-2xl font-semibold">{{ patient.first_name }} {{ patient.last_name }}</h3>
+                <p class="text-sm">Age: {{ patient.age }}</p>
+                <p class="text-sm">Gender: {{ patient.gender }}</p>
+                <p class="text-sm">Condition: {{ patient.condition }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section id="past_patients" class="my-12">
+    <h2 class="text-3xl font-bold text-darkBlue mb-4">Past Patients</h2>
+    <div class="flex flex-wrap">
+        {% for patient in past_patients %}
+        <div class="w-full md:w-1/2 p-4">
+            <div class="border rounded-lg p-4">
+                <h3 class="text-2xl font-semibold">{{ patient.first_name }} {{ patient.last_name }}</h3>
+                <p class="text-sm">Age: {{ patient.age }}</p>
+                <p class="text-sm">Gender: {{ patient.gender }}</p>
+                <p class="text-sm">Condition: {{ patient.condition }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
+

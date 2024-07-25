@@ -1,7 +1,7 @@
 """A nurse model"""
 from models.base import DoctorNurseBase
 from . import db
-from . import nurse_patient
+from models import nurse_patient, doctor_nurse
 
 
 class Nurse(DoctorNurseBase):
@@ -12,3 +12,5 @@ class Nurse(DoctorNurseBase):
     availability = db.Column(db.Integer, nullable=False, default=1)
     patients = db.relationship('Patient', secondary=nurse_patient, backref='nurses')
     tasks = db.relationship('Task', backref='nurse')
+#    doctors = db.relationship('Doctor', secondary=doctor_nurse, back_populates='nurses')
+

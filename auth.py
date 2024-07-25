@@ -18,10 +18,10 @@ def save_profile_pic(image):
     _, ext = os.path.splitext(image.filename)
     filenam = os.path.join(str(uuid4()) + ext)
     filename = secure_filename(filenam)
-    filepath = os.path.join('/static/images', filename)
+    filepath = os.path.join('static/images', filename)
     try:
         image.save(filepath)
-        return filepath
+        return os.path.join('/', filepath)
     except Exception as e:
         print('Saving failed')
         print(e)
@@ -48,9 +48,11 @@ def signup():
 
         db.session.add(user)
         db.session.commit()
+        flash("Signup successful", "success")
 
         return redirect(url_for('auth.login'))
     else:
+
         return render_template('sig2.html', form=form)
 
 
@@ -67,7 +69,12 @@ def login():
             if user and bcrypt.check_password_hash(user[0].password, pwd.strip()):
                 login_user(user[0])
                 flash("Login successful", "success")
-                return render_template("doctor_home.html")
+                if Doctor.query.get(user[0].id):
+                    return redirect(url_for("doctor_bp.doctor_index"))
+                elif Patient.query.get(user[0].id):
+                    return redirect(url_for("patient_bp.patient_index"))
+                else:
+                    return redirect(url_for("nurse_bp.nurse_index"))
         form.password.errors.append("Invalid login details")
     return render_template("log.html", form=form)
 
@@ -77,4 +84,5 @@ def login():
 def logout():
     """logs out user"""
     logout_user()
+    flash("logout success", "success")
     return render_template("land2.html")

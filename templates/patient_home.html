@@ -1,0 +1,60 @@
+{% extends "patient_layout.html" %}
+
+{% block page_title %}
+Patient Home - Hiltan Hospital
+{% endblock %}
+
+{% block main %}
+<section id="profile" class="my-12 text-center">
+    <img src="{{ current_user.profile_pic }}" alt="Patient Profile Picture" class="w-32 h-32 rounded-full mx-auto">
+    <h2 class="text-3xl font-bold text-darkBlue mt-4">Welcome, {{ current_user.name }} {{ current_user.surname }}</h2>
+    <p class="text-lg mt-2">Here's a summary of your current health information and services.</p>
+</section>
+
+<section id="prescriptions" class="my-12">
+    <h2 class="text-3xl font-bold text-darkBlue mb-4">Current Prescriptions</h2>
+    <div class="flex flex-wrap">
+        {% for prescription in current_prescriptions %}
+        <div class="w-full md:w-1/2 p-4">
+            <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                <div class="p-4">
+                    <p><strong>Medicine:</strong> {{ prescription.medicine }}</p>
+                    <p><strong>Disease(s):</strong> {{ prescription.disease }}</p>
+                    <p><strong>Instruction:</strong> {{ prescription.instruction }}</p>
+                    <p><strong>Dosage:</strong> {{ prescription.dosage }}</p>
+                    <p><strong>Date Created:</strong> {{ prescription.date_created.strftime('%Y-%m-%d') }}</p>
+                    <div class="mt-2">
+                        <a href="{{ url_for('patient_bp.prescription_view', prescription_id=prescription.id) }}" class="bg-lightBlue text-white py-1 px-3 rounded">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section id="assigned-doctors" class="my-12">
+    <h2 class="text-3xl font-bold text-darkBlue mb-4">Assigned Doctors</h2>
+    <div class="flex flex-wrap">
+        {% for doctor in assigned_doctors %}
+        <div class="w-full md:w-1/2 p-4">
+            <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                <div class="p-4">
+                    <div class="flex items-center mb-4">
+                        <img src="{{ doctor.profile_pic }}" alt="Doctor Profile Picture" class="w-16 h-16 rounded-full mr-4 object-cover">
+                        <div>
+                            <h3 class="text-2xl font-semibold">{{ doctor.name }} {{ doctor.surname }}</h3>
+                            <p>Email: {{ doctor.email }}</p>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <a href="{{ url_for('patient_bp.doctor_view', doctor_id=doctor.id) }}" class="bg-lightBlue text-white py-1 px-3 rounded">View Profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
+

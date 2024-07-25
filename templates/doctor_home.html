@@ -24,15 +24,15 @@ Doctor Home - Hiltan Hospital
                         <img src={{ patient.profile_pic }} alt="Patient Profile Picture" class="w-full h-full object-cover">
                     </div>
                     <div>
-                        <h3 class="text-2xl font-semibold">{{ patient.first_name }} {{ patient.surname }}</h3>
+                        <h3 class="text-2xl font-semibold">{{ patient.name }} {{ patient.surname }}</h3>
                         <p>Age: {{ patient.age }}</p>
                         <p>Gender: {{ patient.gender }}</p>
                         <p>Email: {{ patient.email }}</p>
                         <div class="mt-2">
-				<form action="/doctor/diagnosis?patient_id={{ patient.patient_id }}" method="post" class="inline">
+				<form action="/doctor/diagnosis/{{ patient.id }}/create" method="post" class="inline">
                                 <button type="submit" class="bg-lightBlue text-white py-1 px-3 rounded">Diagnose</button>
                             </form>
-                            <form action="/doctor/patients/remove?patient_id={{ patient.patient_id }}" method="post" class="inline ml-2">
+                            <form action="/doctor/patients/remove/{{ patient.id }}" method="get" class="inline ml-2">
                                 <button type="submit" class="bg-red-600 text-white py-1 px-3 rounded">Remove</button>
                             </form>
                         </div>

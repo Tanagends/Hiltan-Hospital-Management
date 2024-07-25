@@ -1,0 +1,27 @@
+{% extends "patient_layout.html" %}
+
+{% block page_title %}
+Diagnosis Details - Hiltan Hospital
+{% endblock %}
+
+{% block main %}
+<section id="diagnosis-details" class="my-12">
+    <h2 class="text-3xl font-bold text-darkBlue mb-4">{{ diagnosis.disease }}</h2>
+    <p>{{ diagnosis.description }}</p>
+    <p><strong>Date:</strong> {{ diagnosis.date.strftime('%Y-%m-%d') }}</p>
+    <h3 class="text-2xl font-bold text-darkBlue mt-8 mb-4">Prescriptions</h3>
+    <ul class="list-disc pl-5">
+        {% for prescription in prescriptions %}
+        <li>
+            <p><strong>Medicine:</strong> {{ prescription.medicine }}</p>
+            <p><strong>Dosage:</strong> {{ prescription.dosage }}</p>
+            <p><strong>Instruction:</strong> {{ prescription.instruction }}</p>
+            <div class="mt-2">
+                <a href="{{ url_for('patient_bp.prescription_view', prescription_id=prescription.id) }}" class="bg-lightBlue text-white py-1 px-3 rounded">View Prescription</a>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+{% endblock %}
+

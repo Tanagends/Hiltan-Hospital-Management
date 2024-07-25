@@ -1,6 +1,7 @@
 """Model for a diagnosis"""
 from models.base import Base
 from . import db
+from models import doctor_diagnosis
 #from models.prescription import Prescription
 from models.patient import Patient
 
@@ -13,4 +14,6 @@ class Diagnosis(Base):
     date = db.Column(db.Date)
     prescriptions = db.relationship('Prescription', backref='diagnosis')
     patient_id = db.Column(db.String(50), db.ForeignKey('patients.id'))
+    doctor_id = db.Column(db.String(50), db.ForeignKey('doctors.id'))
     current = db.Column(db.Integer, default=1)
+#    doctors = db.relationship('Doctor', secondary=doctor_diagnosis, back_populates='diagnosis')

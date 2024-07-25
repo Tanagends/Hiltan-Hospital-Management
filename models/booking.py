@@ -13,5 +13,5 @@ class Booking(Base):
     time = db.Column(db.Time)
     patient_id = db.Column(db.String(100), db.ForeignKey('patients.id'), nullable=False)
     doctor_id = db.Column(db.String(100), db.ForeignKey('doctors.id'))
-    note = db.Text
-    status =  db.Column(db.String(100))
+    note = db.Column(db.Text)
+    status =  db.Column(db.String(100), default="pending")

@@ -1,0 +1,25 @@
+{% extends "patient_layout.html" %}
+
+{% block page_title %}
+Doctor Profile - Hiltan Hospital
+{% endblock %}
+
+{% block main %}
+<section id="doctor-profile" class="my-12">
+    <h2 class="text-3xl font-bold text-darkBlue mb-4">Doctor Profile</h2>
+    <div class="bg-white shadow-md rounded-lg p-4">
+        <div class="flex items-center mb-4">
+		<img src={{ doctor.profile_pic }} alt="Doctor Profile Picture" class="w-24 h-24 rounded-full mr-4 object-cover">
+            <div>
+                <h3 class="text-2xl font-semibold">{{ doctor.name }} {{ doctor.surname }}</h3>
+                <p>Specialization: {{ doctor.specialization }}</p>
+                <p>Email: {{ doctor.email }}</p>
+                <p>Phone: {{ doctor.phone }}</p>
+            </div>
+        </div>
+        <p>Age: {{ doctor.age }}</p>
+	<p>Gender: {{ doctor.gender }}</p>
+    </div>
+</section>
+{% endblock %}
+

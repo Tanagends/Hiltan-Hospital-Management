@@ -10,18 +10,31 @@ Doctor - All Patients
     <div class="flex flex-wrap">
         <!-- Placeholder for each patient -->
         {% for patient in patients %}
-        <div class="w-full md:w-1/2 p-4">
-            <div class="flex items-center bg-white shadow-md rounded p-4">
-                <div class="w-16 h-16 rounded-full overflow-hidden mr-4">
-                    <img src="{{ url_for('static', filename='images/default_patient.jpg') }}" alt="Patient Profile Picture" class="w-full h-full object-cover">
-                </div>
-                <div>
-                    <h3 class="text-2xl font-semibold">{{ patient.name }}</h3>
-                    <p>Condition: {{ patient.condition }}</p>
-                    <a href="{{ url_for('doctor_bp.all_patients', patient_id=patient.id) }}" class="text-red-500 hover:underline">Remove Patient</a>
+	<div class="w-full md:w-1/2 p-4">
+            <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                <div class="flex items-center p-4">
+                    <div class="w-16 h-16 rounded-full overflow-hidden mr-4">
+                        <img src={{ patient.profile_pic }} alt="Patient Profile Picture" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-semibold">{{ patient.name }} {{ patient.surname }}</h3>
+                        <p>Age: {{ patient.age }}</p>
+                        <p>Gender: {{ patient.gender }}</p>
+                        <p>Email: {{ patient.email }}</p>
+			<p>Address: {{ patient.address }}</p>
+                        <div class="mt-2">
+				<form action="/doctor/diagnosis/{{ patient.id }}/create" method="post" class="inline">
+                                <button type="submit" class="bg-lightBlue text-white py-1 px-3 rounded">Diagnose</button>
+                            </form>
+                            <form action="/doctor/patients/{{ patient.id }}/remove" method="get" class="inline ml-2">
+                                <button type="submit" class="bg-red-600 text-white py-1 px-3 rounded">Remove</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
         {% endfor %}
     </div>
 </section>

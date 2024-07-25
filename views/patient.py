@@ -1,8 +1,8 @@
 """doctors view"""
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, flash
 from flask_login import login_required, current_user
 from forms import BookingForm
-from models import Booking, db, Task
+from models import Booking, db, Task, Diagnosis, Doctor
 
 
 patient_bp = Blueprint('patient_bp', __name__)
@@ -15,13 +15,17 @@ def patient_index():
     diagnosis = current_user.diagnosis
 
     current_prescriptions = []
+    assigned_doctors = [] + current_user.doctors
     for diag in diagnosis:
         if diag.current == 1:
             current_prescriptions += diag.prescriptions
-    assigned_doctors = current_user.doctors
-    
+            doctor = Doctor.query.get(diag.doctor_id)
+            if doctor not in assigned_doctors:
+                assigned_doctors.append(doctor)
+
+    print(assigned_doctors)
     return render_template('patient_home.html', current_prescriptions=current_prescriptions,
-                           assignd_doctors=assigned_doctors)
+                           assigned_doctors=assigned_doctors)
 
 
 @patient_bp.route('/booking', methods=["GET", "POST"], strict_slashes=False)
@@ -31,13 +35,14 @@ def booking():
     form = BookingForm()
 
     if form.validate_on_submit():
-        excl_fields = []
+        excl_fields = ["csrf_token", "submit"]
         data = {k:v for k,v in form.data.items() if k not in excl_fields}
-        #ensure patient_id is included
+        data['patient_id'] = current_user.id
         booking = Booking(**data)
-        patient.bookings.append(booking)
+        current_user.bookings.append(booking)
         db.session.add(booking)
         db.session.commit()
+        flash("Booking Successful", "success")
 
     bookings = current_user.bookings
     pending_bookings = [b for b in bookings if b.status == "pending"]
@@ -52,11 +57,11 @@ def booking():
 
 @patient_bp.route('/booking/<string:booking_id>/delete', strict_slashes=False)
 def delete_booking(booking_id):
-    """Deletes a booking from being the doctor's, to pending
+    """
        Only the patient can ultimately delete it
     """
     booking = Booking.query.get(booking_id)
-    if (doctor := booking.doctor_id == None):
+    if (doctor := booking.doctor_id):
         doctor.bookings.remove(booking)
     current_user.bookings.remove(booking)
     db.session.delete(booking)
@@ -66,11 +71,18 @@ def delete_booking(booking_id):
 @patient_bp.route('/diagnosis/', strict_slashes=False)
 @patient_bp.route('/diagnosis/<string:diag_id>', strict_slashes=False)
 def diagnosis(diag_id=None):
-    """A patient diagnosis portal"""
+    """A patient diagnosis portal, supposed to display a current diagnoses
+       And a medical history of past diagnoses
+    """
     if diag_id is None:
         diagnosis = current_user.diagnosis
         past_diagnosis = []
-        current_diagnosis = [d if diagnosis.current == 1 else past_diagnosis.append(d) for d in diagnosis]
+        current_diagnosis = []
+        for d in diagnosis:
+            if d.current == 1:
+                current_diagnosis.append(d)
+            else:
+                past_diagnosis.append(d)
 
         return render_template('patient_diagnosis.html', past_diagnosis=past_diagnosis, current_diagnosis=current_diagnosis)
     #diagnosis view.... with prescriptions
@@ -96,3 +108,18 @@ def prescriptions(prescription_id=None):
  
     return render_template("patient_prescriptions.html", current_prescriptions=current_prescriptions,
                             past_prescriptions=past_prescriptions)
+
+@patient_bp.route('/prescription/<string:prescription_id>', strict_slashes=False)
+#@login_required
+def prescription_view(prescription_id):
+    """View prescription details"""
+    prescription = Prescription.query.get(prescription_id)
+    return render_template('patient_prescription_view.html', prescription=prescription)
+
+@patient_bp.route('/doctor/<string:doctor_id>', strict_slashes=False)
+#@login_required
+def doctor_view(doctor_id):
+    """View doctor profile"""
+    doctor = Doctor.query.get(doctor_id)
+    return render_template('patient_doctor_view.html', doctor=doctor)
+

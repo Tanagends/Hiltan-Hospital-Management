@@ -1,0 +1,41 @@
+{% extends "nurse_layout.html" %}
+
+{% block page_title %}
+Nurse Tasks - Hiltan Hospital
+{% endblock %}
+
+{% block main %}
+<section id="current_tasks" class="my-12">
+    <h2 class="text-3xl font-bold text-darkBlue mb-4">Current Tasks</h2>
+    <div class="flex flex-wrap">
+        {% for task in current_tasks %}
+        <div class="w-full md:w-1/2 p-4">
+            <div class="border rounded-lg p-4">
+                <p class="text-sm">Task: {{ task.description }}</p>
+                <p class="text-sm">Date Assigned: {{ task.date_created.strftime('%Y-%m-%d') }}</p>
+                <div class="mt-4 flex justify-between">
+                    <form method="get" action="{{ url_for('nurse_bp.task', task_id=task.id) }}">
+                        <button type="submit" class="bg-green-500 text-white rounded px-4 py-2">Complete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section id="past_tasks" class="my-12">
+    <h2 class="text-3xl font-bold text-darkBlue mb-4">Past Tasks</h2>
+    <div class="flex flex-wrap">
+        {% for task in past_tasks %}
+        <div class="w-full md:w-1/2 p-4">
+            <div class="border rounded-lg p-4">
+                <p class="text-sm">Task: {{ task.description }}</p>
+                <p class="text-sm">Date Completed: {{ task.date_modified.strftime('%Y-%m-%d') }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
+

@@ -1,0 +1,42 @@
+{% extends "patient_layout.html" %}
+
+{% block page_title %}
+Patient Diagnosis - Hiltan Hospital
+{% endblock %}
+
+{% block main %}
+<section id="diagnosis" class="my-12">
+    <h2 class="text-3xl font-bold text-darkBlue mb-4">Current Diagnosis</h2>
+    <div class="flex flex-wrap">
+        {% for diag in current_diagnosis %}
+        <div class="w-full md:w-1/2 p-4">
+            <div class="bg-white shadow-md rounded-lg p-4">
+                <h3 class="text-2xl font-semibold">{{ diag.disease }}</h3>
+                <p>{{ diag.description }}</p>
+                <p><strong>Date:</strong> {{ diag.date_created.strftime('%Y-%m-%d') }}</p>
+                <div class="mt-2">
+                    <a href="{{ url_for('patient_bp.diagnosis', diag_id=diag.id) }}" class="bg-lightBlue text-white py-1 px-3 rounded">View Details</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <h2 class="text-3xl font-bold text-darkBlue mt-12 mb-4">Medical History</h2>
+    <div class="flex flex-wrap">
+        {% for diag in past_diagnosis %}
+        <div class="w-full md:w-1/2 p-4">
+            <div class="bg-white shadow-md rounded-lg p-4">
+                <h3 class="text-2xl font-semibold">{{ diag.disease }}</h3>
+                <p>{{ diag.description }}</p>
+                <p><strong>Date:</strong> {{ diag.date_created.strftime('%Y-%m-%d') }}</p>
+                <div class="mt-2">
+                    <a href="{{ url_for('patient_bp.diagnosis', diag_id=diag.id) }}" class="bg-lightBlue text-white py-1 px-3 rounded">View Details</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
+

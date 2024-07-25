@@ -1,5 +1,5 @@
 """All Base Models"""
-from datetime import datetime
+from datetime import datetime, date
 from . import db
 from uuid import uuid4
 from flask_login import UserMixin

@@ -1,0 +1,63 @@
+{% extends "doctor_layout.html" %}
+
+{% block page_title %}
+New Prescription - Hiltan Hospital
+{% endblock %}
+
+{% block main %}
+<section id="new-prescription" class="my-12">
+    <h2 class="text-3xl font-bold text-darkBlue mb-4">Create New Prescription</h2>
+    <form action="{{ url_for('doctor_bp.prescription', diag_id=diag_id) }}" method="post">
+        {{ form.hidden_tag() }}
+        <div class="mb-4">
+            {{ form.medicine.label(class="block text-gray-700 text-sm font-bold mb-2") }}
+            {{ form.medicine(class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline") }}
+            {% if form.medicine.errors %}
+            <div class="text-red-500 text-xs italic">
+                {% for error in form.medicine.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        <div class="mb-4">
+            {{ form.disease.label(class="block text-gray-700 text-sm font-bold mb-2") }}
+            {{ form.disease(class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline") }}
+            {% if form.disease.errors %}
+            <div class="text-red-500 text-xs italic">
+                {% for error in form.disease.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        <div class="mb-4">
+            {{ form.instruction.label(class="block text-gray-700 text-sm font-bold mb-2") }}
+            {{ form.instruction(class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline") }}
+        </div>
+        <div class="mb-4">
+            {{ form.dosage.label(class="block text-gray-700 text-sm font-bold mb-2") }}
+            {{ form.dosage(class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline") }}
+            {% if form.dosage.errors %}
+            <div class="text-red-500 text-xs italic">
+                {% for error in form.dosage.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        <div class="mb-4">
+            {{ form.start_date.label(class="block text-gray-700 text-sm font-bold mb-2") }}
+            {{ form.start_date(class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline") }}
+        </div>
+        <div class="mb-4">
+            {{ form.finish_date.label(class="block text-gray-700 text-sm font-bold mb-2") }}
+            {{ form.finish_date(class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline") }}
+        </div>
+        <div class="mb-4">
+            {{ form.submit(class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline") }}
+        </div>
+    </form>
+</section>
+{% endblock %}
+

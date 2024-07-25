@@ -15,3 +15,4 @@ class Doctor(DoctorNurseBase):
     nurses = db.relationship('Nurse', secondary=doctor_nurse, backref=('doctors'))
     patients = db.relationship('Patient', secondary=doctor_patient, backref=('doctors'))
     diagnosis = db.relationship('Diagnosis', secondary=doctor_diagnosis, backref=('doctors'))
+

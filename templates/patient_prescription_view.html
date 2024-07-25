@@ -1,0 +1,19 @@
+{% extends "patient_layout.html" %}
+
+{% block page_title %}
+Prescription Details - Hiltan Hospital
+{% endblock %}
+
+{% block main %}
+<section id="prescription-details" class="my-12">
+    <h2 class="text-3xl font-bold text-darkBlue mb-4">Prescription Details</h2>
+    <div class="bg-white shadow-md rounded-lg p-4">
+	<p>Medicine: {{ prescription.medicine }}</p>
+        <p>Disease: {{ prescription.disease }}</p>
+	<p>Instruction: {{ prescription.instruction }}</p>
+	<p>Dosage: {{ prescription.dosage }}</p>
+        <p>Date Created: {{ prescription.date_created.strftime('%Y-%m-%d') }}</p>
+    </div>
+</section>
+{% endblock %}
+
